@@ -4,39 +4,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [System.Serializable]
-    public enum CompanyName
-    {
-        none = 0,
-        matches = 1,
-        corrugatedGalvanisedIron = 2,
-        portlandCement = 3,
-        electricMotor = 4,
-        steamHammer = 5,
-        leadAcidBattery = 6,
-        lawnMower = 7,
-        gasStoves = 8,
-        stainlessSteel = 9,
-        streetLanterns = 10,
-        treeFarm = 11,
-        dieselEngine = 12,
-        recharchableBatteries = 13,
-        syntheticPlastic = 14,
-        windTubrines = 15,
-        nuclearPowerPlant = 19,
-    }
+    [SerializeField]
+    private Company companyData;
 
-    [System.Serializable]
-    public enum EnergySource
-    {
-        none = 0,
-        coal = 1,
-        gas = 2,
-        oil = 3,
-        wind = 4,
-        solar = 5,
-        nuclear = 6,
-    }
+    [SerializeField]
+    private EnergySource currentEnergySource;
+
+    [SerializeField]
+    private float increaseProductionValue, increasePriceValue, increaseEffValue;
 
     // Start is called before the first frame update
     void Start()
@@ -48,5 +23,46 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+    
+    public void UnlockCompany()
+    {
+        companyData.unlocked = true;
+    }
+
+    public void IncreaseProduction()
+    {
+        companyData.currentProductionLvl++;
+        CurrentProductionCalculation();
+    }
+
+    public void CurrentProductionCalculation()
+    {
+        companyData.currentProductionValue = companyData.initProduction * ((companyData.currentProductionLvl * increaseProductionValue) + (companyData.currentEfficencyLvl * increaseEffValue)/currentEnergySource.enrgySourceEff);
+    }
+
+    public void IncreasePrice()
+    {
+        companyData.currentPriceLvl++;
+    }
+
+    public void CurrentPriceCalculation()
+    {
+        companyData.currentPriceValue = companyData.initPrice * Mathf.Pow(increasePriceValue, companyData.currentPriceLvl);
+    }
+
+    public void IncreasePollutionLvl()
+    {
+        companyData.currentPollutionLvl++;
+    }
+
+    public void CurrentPollutionCalculation()
+    {
+        companyData.currentPollutionValue = companyData.initPollution * (Mathf.Pow(companyData.currentProductionLvl, 1.15f) - Mathf.Pow(companyData.currentEfficencyLvl, 1.045f));
+    }
+
+    public void NewEnergySource(EnergySource newEnergySource)
+    {
+        currentEnergySource = newEnergySource;
     }
 }
