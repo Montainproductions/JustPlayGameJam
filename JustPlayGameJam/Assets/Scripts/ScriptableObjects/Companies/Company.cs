@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "CompanyData")]
 public class Company : ScriptableObject
 {
     [System.Serializable]
@@ -48,7 +49,7 @@ public class Company : ScriptableObject
     public float initProduction, initPrice, initPollution;
 
     //Current level
-    public float currentProductionLvl, currentEfficencyLvl, currentPriceLvl, currentPollutionLvl;
+    public float currentBuyLvl, currentEfficencyLvl, currentPriceLvl;
 
     //Current values
     public float currentProductionValue, currentPriceValue, currentPollutionValue, reductionPollution;

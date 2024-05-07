@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "EnergySource")]
 public class EnergySource : ScriptableObject
 {
     [System.Serializable]
-    public enum TypesOfEnergySource
+    public enum TypesEnergySource
     {
         none = 0,
         coal = 1,
@@ -16,7 +17,7 @@ public class EnergySource : ScriptableObject
         nuclear = 6,
     }
 
-    public TypesOfEnergySource currentEnergySource;
+    public TypesEnergySource energySource;
 
     public float enrgySourceEff, enrgySourcePollution;
 }
