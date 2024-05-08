@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Coal
   m_EditorClassIdentifier: 
   energySource: 1
-  enrgySourceEff: 0.24
+  enrgySourceEff: 1.24
   enrgySourcePollution: 0.35

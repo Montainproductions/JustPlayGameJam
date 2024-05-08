@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Solar
   m_EditorClassIdentifier: 
   energySource: 5
-  enrgySourceEff: 0
-  enrgySourcePollution: 0
+  enrgySourceEff: 1.69
+  enrgySourcePollution: 0.03

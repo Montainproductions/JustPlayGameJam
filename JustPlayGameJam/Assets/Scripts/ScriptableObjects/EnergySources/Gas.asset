@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Gas
   m_EditorClassIdentifier: 
   energySource: 2
-  enrgySourceEff: 0
-  enrgySourcePollution: 0
+  enrgySourceEff: 1.37
+  enrgySourcePollution: 0.29

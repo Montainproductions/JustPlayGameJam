@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0883f75f38d203248b84a5a3fb5df1ca, type: 3}
-  m_Name: Corrugated Galvanised Iron
+  m_Name: Stainless steel
   m_EditorClassIdentifier: 
-  unlocked: 1
-  businessName: 2
+  unlocked: 0
+  businessName: 5
   unlocksEnrgySource: 0
-  initProduction: 1
-  initPrice: 10
-  initPollution: 0.01
+  initProduction: 0.6
+  initPrice: 175
+  initPollution: 0.02
   currentBuyLvl: 0
   currentEfficencyLvl: 0
   currentPriceLvl: 0
-  currentProductionValue: 2.195
-  currentPriceValue: 32.550003
+  currentProductionValue: 0
+  currentPriceValue: 0
   currentPollutionValue: 0
   reductionPollution: 0

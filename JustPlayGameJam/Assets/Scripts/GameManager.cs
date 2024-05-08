@@ -2,16 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
     [SerializeField]
-    private float playerBankBalance;
+    private float tickTimer;
 
     [SerializeField]
-    private float currentPollutionLevels;
+    private EnergySource[] allEnergySources;
+
+    private EnergySource currentEnergySource;
+
+    [SerializeField]
+    private float playerBankBalance, currentPollutionLevels;
+
+    private float moneyIn, pollutionIn;
+
+    List<Company> unlockedCompanies = new List<Company>();
+
+    [SerializeField]
+    private TextMeshProUGUI balanceText, pollutionText;
 
     private void Awake()
     {
@@ -28,6 +41,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currentEnergySource = allEnergySources[0];
+        UpdateValues();
         StartCoroutine(MonthlyTick());
     }
 
@@ -37,12 +52,67 @@ public class GameManager : MonoBehaviour
         
     }
 
+    private void OnDestroy()
+    {
+        RestartCompanies();
+    }
+
     IEnumerator MonthlyTick()
     {
-        yield return new WaitForSeconds(currentPollutionLevels);
+        yield return new WaitForSeconds(tickTimer);
+        Debug.Log("Update");
+
+        if (CheckCompaniesUnlocked())
+        {
+            for (int i = 0; i < unlockedCompanies.Count; i++)
+            {
+                moneyIn = unlockedCompanies[i].currentProductionValue * unlockedCompanies[i].currentPriceValue;
+                pollutionIn = unlockedCompanies[i].currentPollutionValue;
+            }
+        }
+
+        playerBankBalance += moneyIn;
+        currentPollutionLevels += pollutionIn;
+
+        Debug.Log("Money Earned: " + moneyIn);
+        Debug.Log("Players Bank: " + playerBankBalance);
+
+        UpdateValues();
 
         StartCoroutine(MonthlyTick());
         yield return null;
+    }
+
+    public void CompanyUnlocked(Company newCompany)
+    {
+        unlockedCompanies.Add(newCompany);
+    }
+
+    public void RestartCompanies()
+    {
+        if (CheckCompaniesUnlocked())
+        {
+            for (int i = 0; i < unlockedCompanies.Count; i++)
+            {
+                unlockedCompanies[i].currentBuyLvl = 0;
+                unlockedCompanies[i].currentEfficencyLvl = 0;
+                unlockedCompanies[i].currentPriceLvl = 0;
+            }
+        }
+    }
+
+    public bool CheckCompaniesUnlocked()
+    {
+        if(unlockedCompanies.Count > 0)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public EnergySource GetEnergySource()
+    {
+        return currentEnergySource;
     }
 
     public float GetBalance()
@@ -53,5 +123,22 @@ public class GameManager : MonoBehaviour
     public float GetPollutionLevel()
     {
         return currentPollutionLevels;
+    }
+
+    public void SetEnergySource(int energySourcePos)
+    {
+        currentEnergySource = allEnergySources[energySourcePos];
+    }
+
+    public void SetPlayersBalance(float cost)
+    {
+        playerBankBalance += cost;
+        UpdateValues();
+    }
+
+    public void UpdateValues()
+    {
+        balanceText.text = playerBankBalance.ToString();
+        pollutionText.text = currentPollutionLevels.ToString();
     }
 }

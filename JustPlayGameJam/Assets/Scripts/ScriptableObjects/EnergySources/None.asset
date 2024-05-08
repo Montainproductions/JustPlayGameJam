@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2515eaf3784e14245bfdc5ad38c65e10, type: 3}
-  m_Name: Oil
+  m_Name: None
   m_EditorClassIdentifier: 
-  energySource: 3
-  enrgySourceEff: 1.45
-  enrgySourcePollution: 0.2
+  energySource: 0
+  enrgySourceEff: 1
+  enrgySourcePollution: 0

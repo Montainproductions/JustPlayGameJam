@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Wind
   m_EditorClassIdentifier: 
   energySource: 4
-  enrgySourceEff: 0
-  enrgySourcePollution: 0
+  enrgySourceEff: 1.53
+  enrgySourcePollution: 0.08

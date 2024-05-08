@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Nuclear
   m_EditorClassIdentifier: 
   energySource: 6
-  enrgySourceEff: 0
-  enrgySourcePollution: 0
+  enrgySourceEff: 1.8
+  enrgySourcePollution: 0.001
