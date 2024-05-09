@@ -12,16 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0883f75f38d203248b84a5a3fb5df1ca, type: 3}
   m_Name: Portland Cement
   m_EditorClassIdentifier: 
-  unlocked: 0
+  unlocked: 1
   businessName: 3
   unlocksEnrgySource: 0
   initProduction: 1.6
   initPrice: 30
   initPollution: 0.01
+  initBuyCost: 100
+  initPriceCost: 120
+  initEfficencyCost: 140
   currentBuyLvl: 0
-  currentEfficencyLvl: 0
   currentPriceLvl: 0
-  currentProductionValue: 0
-  currentPriceValue: 0
-  currentPollutionValue: 0
+  currentEfficencyLvl: 0
+  currentProductionValue: 3.5119998
+  currentPriceValue: 32.550003
+  currentPollutionValue: 0.3823099
   reductionPollution: 0
+  currentProductionCost: 0
+  currentPriceCost: 0
+  currentEfficencyCost: 0
+  companyValAffecter: 0

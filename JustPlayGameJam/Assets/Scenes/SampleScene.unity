@@ -2321,7 +2321,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5db9fc40a6a1bb54cae34666e6727bb0, type: 2}
   - {fileID: 11400000, guid: de5078e2b9b442348b55dc7f7a0fcba2, type: 2}
   - {fileID: 11400000, guid: 302d6c7fc541370448cdac128783ab84, type: 2}
-  playerBankBalance: 1000
+  playerBankBalance: 4000
   currentPollutionLevels: 0
   balanceText: {fileID: 685800858}
   pollutionText: {fileID: 120923844}
@@ -2372,6 +2372,7 @@ RectTransform:
   - {fileID: 212372888}
   - {fileID: 1377520720}
   - {fileID: 539571969}
+  - {fileID: 2112193169}
   m_Father: {fileID: 1578162424}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2633,6 +2634,84 @@ Transform:
   m_Father: {fileID: 1351055352}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2112193168
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1861545142}
+    m_Modifications:
+    - target: {fileID: 4155400610921426132, guid: 9e494d0ae7ead0a47b246bc761ba96ff, type: 3}
+      propertyPath: m_text
+      value: Portland Cement
+      objectReference: {fileID: 0}
+    - target: {fileID: 4155400610921426133, guid: 9e494d0ae7ead0a47b246bc761ba96ff, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 54.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4155400611028460790, guid: 9e494d0ae7ead0a47b246bc761ba96ff, type: 3}
+      propertyPath: m_Name
+      value: Company Text Box (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4155400611028460792, guid: 9e494d0ae7ead0a47b246bc761ba96ff, type: 3}
+      propertyPath: unlockCost
+      value: 2450
+      objectReference: {fileID: 0}
+    - target: {fileID: 4155400611028460792, guid: 9e494d0ae7ead0a47b246bc761ba96ff, type: 3}
+      propertyPath: companyData
+      value: 
+      objectReference: {fileID: 11400000, guid: 0e75fb96978ba0b43bc7b190313b356d, type: 2}
+    - target: {fileID: 4155400611028460793, guid: 9e494d0ae7ead0a47b246bc761ba96ff, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4155400611028460793, guid: 9e494d0ae7ead0a47b246bc761ba96ff, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -488
+      objectReference: {fileID: 0}
+    - target: {fileID: 4155400611028460793, guid: 9e494d0ae7ead0a47b246bc761ba96ff, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -655
+      objectReference: {fileID: 0}
+    - target: {fileID: 4155400611028460793, guid: 9e494d0ae7ead0a47b246bc761ba96ff, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4155400611028460793, guid: 9e494d0ae7ead0a47b246bc761ba96ff, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4155400611028460793, guid: 9e494d0ae7ead0a47b246bc761ba96ff, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4155400611028460793, guid: 9e494d0ae7ead0a47b246bc761ba96ff, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4155400611028460793, guid: 9e494d0ae7ead0a47b246bc761ba96ff, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4155400611028460793, guid: 9e494d0ae7ead0a47b246bc761ba96ff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4155400611028460793, guid: 9e494d0ae7ead0a47b246bc761ba96ff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4155400611028460793, guid: 9e494d0ae7ead0a47b246bc761ba96ff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9e494d0ae7ead0a47b246bc761ba96ff, type: 3}
+--- !u!4 &2112193169 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4155400611028460793, guid: 9e494d0ae7ead0a47b246bc761ba96ff, type: 3}
+  m_PrefabInstance: {fileID: 2112193168}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4155400610111346561 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6172899060061865579, guid: dbf29d14da9fc5e449971b6d6080c877, type: 3}

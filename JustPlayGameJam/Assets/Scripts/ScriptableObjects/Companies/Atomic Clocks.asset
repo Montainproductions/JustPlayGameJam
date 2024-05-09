@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0883f75f38d203248b84a5a3fb5df1ca, type: 3}
-  m_Name: Matches
+  m_Name: Atomic Clocks
   m_EditorClassIdentifier: 
-  unlocked: 1
-  businessName: 1
+  unlocked: 0
+  businessName: 5
   unlocksEnrgySource: 0
-  initProduction: 24
-  initPrice: 0.5
-  initPollution: 0.001
+  initProduction: 0.1
+  initPrice: 10000
+  initPollution: 0.00001
   initBuyCost: 100
   initPriceCost: 120
   initEfficencyCost: 140
   currentBuyLvl: 0
   currentPriceLvl: 0
   currentEfficencyLvl: 0
-  currentProductionValue: 52.68
-  currentPriceValue: 0.5425
-  currentPollutionValue: 0.3823099
+  currentProductionValue: 0
+  currentPriceValue: 0
+  currentPollutionValue: 0
   reductionPollution: 0
   currentProductionCost: 0
   currentPriceCost: 0

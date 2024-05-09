@@ -118,18 +118,18 @@ public class Company_Logic : MonoBehaviour
         EfficencyButtonCost();
     }
 
+    public void ProductionButtonCost()
+    {
+        companyData.currentProductionCost = (companyData.initBuyCost * companyData.currentBuyLvl) * constantValues;
+        Debug.Log(companyData.currentProductionCost);
+        costText[0].text = companyData.currentProductionCost.ToString();
+    }
+
     public void PriceButtonCost()
     {
         companyData.currentPriceCost = (companyData.initPriceCost * companyData.currentPriceLvl) * constantValues;
         //Debug.Log(companyData.currentPriceCost);
-        costText[0].text = companyData.currentPriceCost.ToString();
-    }
-
-    public void ProductionButtonCost()
-    {
-        companyData.currentProductionCost = (companyData.initPriceCost * companyData.currentBuyLvl) * constantValues;
-        Debug.Log(companyData.currentProductionCost);
-        costText[1].text = companyData.currentProductionCost.ToString();
+        costText[1].text = companyData.currentPriceCost.ToString();
     }
 
     public void EfficencyButtonCost()

@@ -51,11 +51,11 @@ public class Company : ScriptableObject
 
     [Header("Initial costs for upgrades")]
     public float initBuyCost;
-    public float initEfficencyCost, initPriceCost;
+    public float initPriceCost, initEfficencyCost;
 
     [Header("Current levels bought")]
     public float currentBuyLvl;
-    public float currentEfficencyLvl, currentPriceLvl;
+    public float currentPriceLvl, currentEfficencyLvl;
 
     [Header("Current calculated values")]
     public float currentProductionValue;
@@ -63,7 +63,7 @@ public class Company : ScriptableObject
 
     [Header("CurrentButtonCosts")]
     public float currentProductionCost;
-    public float currentEfficencyCost, currentPriceCost;
+    public float currentPriceCost, currentEfficencyCost;
 
     [Header("Arbitrary company value")]
     public float companyValAffecter;
