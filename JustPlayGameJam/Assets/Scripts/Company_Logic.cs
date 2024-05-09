@@ -20,11 +20,18 @@ public class Company_Logic : MonoBehaviour
     [SerializeField]
     private GameObject unlocked, locked;
 
+    [SerializeField]
+    private TextMeshProUGUI[] costText;
+
+    private float constantValues;
+
     public void Start()
     {
         unlockCostText.text = unlockCost.ToString();
         locked.SetActive(true);
         unlocked.SetActive(false);
+
+        constantValues = 1.3249f;
     }
 
     public void UnlockCompany()
@@ -32,13 +39,17 @@ public class Company_Logic : MonoBehaviour
         float balanceLeft = GameManager.Instance.GetBalance() - unlockCost;
         if (balanceLeft >= 0)
         {
-            GameManager.Instance.SetPlayersBalance(-1000);
+            GameManager.Instance.AffectPlayersBalance(-unlockCost);
             companyData.unlocked = true;
             locked.SetActive(false);
             unlocked.SetActive(true);
-            IncreaseProduction();
-            IncreaseEfficencyLvl();
-            IncreasePrice();
+            companyData.currentBuyLvl++;
+            companyData.currentEfficencyLvl++;
+            companyData.currentPriceLvl++;
+            CurrentProductionCalculation();
+            CurrentPriceCalculation();
+            CurrentPollutionCalculation();
+            UpdateAllButtons();
         }
         else
         {
@@ -48,26 +59,44 @@ public class Company_Logic : MonoBehaviour
 
     public void IncreaseProduction()
     {
-        companyData.currentBuyLvl++;
-        Debug.Log(companyData.currentBuyLvl);
-        CurrentProductionCalculation();
+        float remainingUpgradeBalance = GameManager.Instance.GetBalance() - companyData.currentProductionCost;
+        if (remainingUpgradeBalance >= 0)
+        {
+            GameManager.Instance.AffectPlayersBalance(-companyData.currentProductionCost);
+            companyData.currentBuyLvl++;
+            ProductionButtonCost();
+            CurrentProductionCalculation();
+        }
     }
 
     public void IncreaseEfficencyLvl()
     {
-        companyData.currentEfficencyLvl++;
-        CurrentProductionCalculation();
+        float remainingUpgradeBalance = GameManager.Instance.GetBalance() - companyData.currentEfficencyCost;
+        if (remainingUpgradeBalance >= 0)
+        {
+            GameManager.Instance.AffectPlayersBalance(-companyData.currentEfficencyCost);
+            companyData.currentEfficencyLvl++;
+            EfficencyButtonCost();
+            CurrentProductionCalculation();
+        }
     }
 
     public void IncreasePrice()
     {
-        companyData.currentPriceLvl++;
-        CurrentPriceCalculation();
+        float remainingUpgradeBalance = GameManager.Instance.GetBalance() - companyData.currentPriceCost;
+        if (remainingUpgradeBalance >= 0)
+        {
+            GameManager.Instance.AffectPlayersBalance(-companyData.currentPriceCost);
+            companyData.currentPriceLvl++;
+            PriceButtonCost();
+            CurrentPriceCalculation();
+        }
     }
 
     public void CurrentProductionCalculation()
     {
         companyData.currentProductionValue = companyData.initProduction * ((companyData.currentBuyLvl * equationMultipliers.increaseBuyValue) + (companyData.currentEfficencyLvl * equationMultipliers.increaseEffValue) / GameManager.Instance.GetEnergySource().enrgySourceEff);
+        //Debug.Log(companyData.currentProductionValue);
         CurrentPollutionCalculation();
     }
 
@@ -78,6 +107,34 @@ public class Company_Logic : MonoBehaviour
 
     public void CurrentPollutionCalculation()
     {
-        companyData.currentPollutionValue = companyData.initPollution * (Mathf.Pow(companyData.currentBuyLvl, equationMultipliers.increaseBuyValue) - Mathf.Pow(companyData.currentEfficencyLvl, equationMultipliers.increaseEffValue));
+        float expontialVal = 44.5311f * companyData.initPollution;
+        companyData.currentPollutionValue = 1.70721f*Mathf.Pow(companyData.currentBuyLvl, expontialVal) - (constantValues / companyData.currentEfficencyLvl);
+    }
+
+    public void UpdateAllButtons()
+    {
+        PriceButtonCost();
+        ProductionButtonCost();
+        EfficencyButtonCost();
+    }
+
+    public void PriceButtonCost()
+    {
+        companyData.currentPriceCost = (companyData.initPriceCost * companyData.currentPriceLvl) * constantValues;
+        //Debug.Log(companyData.currentPriceCost);
+        costText[0].text = companyData.currentPriceCost.ToString();
+    }
+
+    public void ProductionButtonCost()
+    {
+        companyData.currentProductionCost = (companyData.initPriceCost * companyData.currentBuyLvl) * constantValues;
+        Debug.Log(companyData.currentProductionCost);
+        costText[1].text = companyData.currentProductionCost.ToString();
+    }
+
+    public void EfficencyButtonCost()
+    {
+        companyData.currentEfficencyCost = (companyData.initEfficencyCost * companyData.currentEfficencyLvl) * constantValues;
+        costText[2].text = companyData.currentEfficencyCost.ToString();
     }
 }

@@ -30,11 +30,13 @@ public class EnergySource_Logic : MonoBehaviour
         float balanceLeft = GameManager.Instance.GetBalance() - unlockCost;
         if (balanceLeft >= 0)
         {
-            GameManager.Instance.SetPlayersBalance(-1000);
+            GameManager.Instance.AffectPlayersBalance(unlockCost);
             energySource.unlocked = true;
             locked.SetActive(false);
             unlocked.SetActive(true);
 
+            GameManager.Instance.UnlockEnergySource(energySource);
+            
             IncreaseEfficencyLvl();
         }
         else
@@ -45,7 +47,7 @@ public class EnergySource_Logic : MonoBehaviour
 
     public void IncreaseEfficencyLvl()
     {
-        if ()
+        if (energySource.enrgySourceEff < energySource.maxEff)
         {
             energySource.enrgySourceEff += 0.01f;
         }

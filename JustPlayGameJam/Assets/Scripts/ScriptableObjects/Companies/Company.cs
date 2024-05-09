@@ -45,12 +45,26 @@ public class Company : ScriptableObject
 
     public EnergySourceUnlock unlocksEnrgySource;
 
-    //Initial values
-    public float initProduction, initPrice, initPollution;
+    [Header("Initial values")]
+    public float initProduction;
+    public float initPrice, initPollution;
 
-    //Current level
-    public float currentBuyLvl, currentEfficencyLvl, currentPriceLvl;
+    [Header("Initial costs for upgrades")]
+    public float initBuyCost;
+    public float initEfficencyCost, initPriceCost;
 
-    //Current values
-    public float currentProductionValue, currentPriceValue, currentPollutionValue, reductionPollution;
+    [Header("Current levels bought")]
+    public float currentBuyLvl;
+    public float currentEfficencyLvl, currentPriceLvl;
+
+    [Header("Current calculated values")]
+    public float currentProductionValue;
+    public float currentPriceValue, currentPollutionValue, reductionPollution;
+
+    [Header("CurrentButtonCosts")]
+    public float currentProductionCost;
+    public float currentEfficencyCost, currentPriceCost;
+
+    [Header("Arbitrary company value")]
+    public float companyValAffecter;
 }

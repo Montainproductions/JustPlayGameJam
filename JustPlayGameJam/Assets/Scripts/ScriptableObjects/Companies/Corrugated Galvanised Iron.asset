@@ -18,10 +18,16 @@ MonoBehaviour:
   initProduction: 1
   initPrice: 10
   initPollution: 0.01
+  initBuyCost: 50
+  initEfficencyCost: 50
+  initPriceCost: 50
   currentBuyLvl: 0
   currentEfficencyLvl: 0
   currentPriceLvl: 0
-  currentProductionValue: 2.195
-  currentPriceValue: 32.550003
-  currentPollutionValue: 0
+  currentProductionValue: 1.045
+  currentPriceValue: 10.85
+  currentPollutionValue: 0.01
   reductionPollution: 0
+  currentProductionCost: 0
+  currentEfficencyCost: 0
+  currentPriceCost: 0

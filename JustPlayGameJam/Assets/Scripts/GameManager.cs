@@ -74,8 +74,8 @@ public class GameManager : MonoBehaviour
         playerBankBalance += moneyIn;
         currentPollutionLevels += pollutionIn;
 
-        Debug.Log("Money Earned: " + moneyIn);
-        Debug.Log("Players Bank: " + playerBankBalance);
+        //Debug.Log("Money Earned: " + moneyIn);
+        //Debug.Log("Players Bank: " + playerBankBalance);
 
         UpdateValues();
 
@@ -110,6 +110,11 @@ public class GameManager : MonoBehaviour
         return false;
     }
 
+    public void UnlockEnergySource(EnergySource newEnergySrouce)
+    {
+        currentEnergySource = newEnergySrouce;
+    }
+
     public EnergySource GetEnergySource()
     {
         return currentEnergySource;
@@ -125,12 +130,7 @@ public class GameManager : MonoBehaviour
         return currentPollutionLevels;
     }
 
-    public void SetEnergySource(int energySourcePos)
-    {
-        currentEnergySource = allEnergySources[energySourcePos];
-    }
-
-    public void SetPlayersBalance(float cost)
+    public void AffectPlayersBalance(float cost)
     {
         playerBankBalance += cost;
         UpdateValues();
