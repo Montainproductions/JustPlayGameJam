@@ -19,7 +19,7 @@ public class EnergySource : ScriptableObject
 
     public TypesEnergySource energySource;
 
-    public bool unlocked;
+    public bool availableSource;
 
     public float enrgySourceEff, startingEff, maxEff, enrgySourcePollution;
 }

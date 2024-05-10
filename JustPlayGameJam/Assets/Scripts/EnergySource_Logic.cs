@@ -6,6 +6,9 @@ using UnityEngine;
 public class EnergySource_Logic : MonoBehaviour
 {
     [SerializeField]
+    private GameObject availabilityBox;
+
+    [SerializeField]
     private EnergySource energySource;
 
     [SerializeField]
@@ -20,6 +23,9 @@ public class EnergySource_Logic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        availabilityBox.SetActive(true);
+        energySource.availableSource = false;
+
         unlockCostText.text = unlockCost.ToString();
         locked.SetActive(true);
         unlocked.SetActive(false);
@@ -27,21 +33,23 @@ public class EnergySource_Logic : MonoBehaviour
 
     public void UnlockCompany()
     {
-        float balanceLeft = GameManager.Instance.GetBalance() - unlockCost;
-        if (balanceLeft >= 0)
+        if (energySource.availableSource)
         {
-            GameManager.Instance.AffectPlayersBalance(unlockCost);
-            energySource.unlocked = true;
-            locked.SetActive(false);
-            unlocked.SetActive(true);
+            float balanceLeft = GameManager.Instance.GetBalance() - unlockCost;
+            if (balanceLeft >= 0)
+            {
+                GameManager.Instance.AffectPlayersBalance(-unlockCost);
+                locked.SetActive(false);
+                unlocked.SetActive(true);
 
-            GameManager.Instance.UnlockEnergySource(energySource);
-            
-            IncreaseEfficencyLvl();
-        }
-        else
-        {
+                GameManager.Instance.BoughtEnergySource(energySource);
 
+                IncreaseEfficencyLvl();
+            }
+            else
+            {
+
+            }
         }
     }
 
@@ -51,5 +59,10 @@ public class EnergySource_Logic : MonoBehaviour
         {
             energySource.enrgySourceEff += 0.01f;
         }
+    }
+
+    public void EnergySourceAvailability(){
+        availabilityBox.SetActive(false);
+        energySource.availableSource = true;
     }
 }

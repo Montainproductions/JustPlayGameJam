@@ -27,23 +27,11 @@ public class Company : ScriptableObject
         nuclearPowerPlant = 19,
     }
 
-    [System.Serializable]
-    public enum EnergySourceUnlock
-    {
-        none = 0,
-        coal = 1,
-        gas = 2,
-        oil = 3,
-        wind = 4,
-        solar = 5,
-        nuclear = 6,
-    }
-
     public bool unlocked;
 
     public CompanyName businessName;
 
-    public EnergySourceUnlock unlocksEnrgySource;
+    public int unlocksEnrgySource;
 
     [Header("Initial values")]
     public float initProduction;

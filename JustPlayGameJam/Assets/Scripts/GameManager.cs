@@ -12,9 +12,15 @@ public class GameManager : MonoBehaviour
     private float tickTimer;
 
     [SerializeField]
+    private EnergySource_Logic[] codeEnergySource;
+
+    [SerializeField]
     private EnergySource[] allEnergySources;
 
+    private List<EnergySource> unlockedEnergySources;
+
     private EnergySource currentEnergySource;
+    private int currentEnergySourceIndex;
 
     [SerializeField]
     private float playerBankBalance, currentPollutionLevels;
@@ -88,6 +94,18 @@ public class GameManager : MonoBehaviour
         unlockedCompanies.Add(newCompany);
     }
 
+    public void BoughtEnergySource(EnergySource newEnergySrouce)
+    {
+        currentEnergySource = newEnergySrouce;
+    }
+
+    public void EnergySourceDiscovered(int newEnergySource)
+    {
+        allEnergySources[newEnergySource].availableSource = true;
+        codeEnergySource[newEnergySource].EnergySourceAvailability();
+        unlockedEnergySources.Add(allEnergySources[newEnergySource]);
+    }
+
     public void RestartCompanies()
     {
         if (CheckCompaniesUnlocked())
@@ -108,11 +126,6 @@ public class GameManager : MonoBehaviour
             return true;
         }
         return false;
-    }
-
-    public void UnlockEnergySource(EnergySource newEnergySrouce)
-    {
-        currentEnergySource = newEnergySrouce;
     }
 
     public EnergySource GetEnergySource()

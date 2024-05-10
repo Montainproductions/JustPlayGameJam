@@ -43,18 +43,28 @@ public class Company_Logic : MonoBehaviour
             companyData.unlocked = true;
             locked.SetActive(false);
             unlocked.SetActive(true);
-            companyData.currentBuyLvl++;
-            companyData.currentEfficencyLvl++;
-            companyData.currentPriceLvl++;
-            CurrentProductionCalculation();
-            CurrentPriceCalculation();
-            CurrentPollutionCalculation();
+            UnlockCompanyFirst();
             UpdateAllButtons();
+
+            if(companyData.unlocksEnrgySource != 0)
+            {
+                GameManager.Instance.EnergySourceDiscovered(companyData.unlocksEnrgySource);
+            }
         }
         else
         {
 
         }
+    }
+
+    public void UnlockCompanyFirst()
+    {
+        companyData.currentBuyLvl++;
+        companyData.currentEfficencyLvl++;
+        companyData.currentPriceLvl++;
+        CurrentProductionCalculation();
+        CurrentPriceCalculation();
+        CurrentPollutionCalculation();
     }
 
     public void IncreaseProduction()
@@ -121,7 +131,7 @@ public class Company_Logic : MonoBehaviour
     public void ProductionButtonCost()
     {
         companyData.currentProductionCost = (companyData.initBuyCost * companyData.currentBuyLvl) * constantValues;
-        Debug.Log(companyData.currentProductionCost);
+        //Debug.Log(companyData.currentProductionCost);
         costText[0].text = companyData.currentProductionCost.ToString();
     }
 
