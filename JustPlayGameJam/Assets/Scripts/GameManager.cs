@@ -101,7 +101,6 @@ public class GameManager : MonoBehaviour
 
     public void EnergySourceDiscovered(int newEnergySource)
     {
-        allEnergySources[newEnergySource].availableSource = true;
         codeEnergySource[newEnergySource].EnergySourceAvailability();
         unlockedEnergySources.Add(allEnergySources[newEnergySource]);
     }
