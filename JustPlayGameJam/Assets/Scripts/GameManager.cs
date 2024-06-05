@@ -72,14 +72,10 @@ public class GameManager : MonoBehaviour
         {
             for (int i = 0; i < unlockedCompanies.Count; i++)
             {
-                moneyIn = unlockedCompanies[i].currentProductionValue * unlockedCompanies[i].currentPriceValue;
-                pollutionIn = unlockedCompanies[i].currentPollutionValue;
+                playerBankBalance += unlockedCompanies[i].currentProductionValue * unlockedCompanies[i].currentPriceValue;
+                currentPollutionLevels += unlockedCompanies[i].currentPollutionValue;
             }
         }
-
-        playerBankBalance += moneyIn;
-        currentPollutionLevels += pollutionIn;
-
         //Debug.Log("Money Earned: " + moneyIn);
         //Debug.Log("Players Bank: " + playerBankBalance);
 
@@ -124,7 +120,10 @@ public class GameManager : MonoBehaviour
         {
             return true;
         }
-        return false;
+        else
+        {
+            return false;
+        }
     }
 
     public EnergySource GetEnergySource()

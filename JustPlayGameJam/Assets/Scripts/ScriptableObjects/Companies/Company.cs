@@ -33,6 +33,9 @@ public class Company : ScriptableObject
 
     public int unlocksEnrgySource;
 
+    [Header("Unlock Price")]
+    public float initUnlockCost;
+
     [Header("Initial values")]
     public float initProduction;
     public float initPrice, initPollution;

@@ -12,9 +12,6 @@ public class Company_Logic : MonoBehaviour
     private ValueMultipliers equationMultipliers;
 
     [SerializeField]
-    private float unlockCost;
-
-    [SerializeField]
     private TextMeshProUGUI unlockCostText;
 
     [SerializeField]
@@ -27,7 +24,7 @@ public class Company_Logic : MonoBehaviour
 
     public void Start()
     {
-        unlockCostText.text = unlockCost.ToString();
+        unlockCostText.text = companyData.initUnlockCost.ToString();
         locked.SetActive(true);
         unlocked.SetActive(false);
 
@@ -36,10 +33,12 @@ public class Company_Logic : MonoBehaviour
 
     public void UnlockCompany()
     {
-        float balanceLeft = GameManager.Instance.GetBalance() - unlockCost;
+        float balanceLeft = GameManager.Instance.GetBalance() - companyData.initUnlockCost;
         if (balanceLeft >= 0)
         {
-            GameManager.Instance.AffectPlayersBalance(-unlockCost);
+            GameManager.Instance.AffectPlayersBalance(-companyData.initUnlockCost);
+            GameManager.Instance.CompanyUnlocked(companyData);
+
             companyData.unlocked = true;
             locked.SetActive(false);
             unlocked.SetActive(true);

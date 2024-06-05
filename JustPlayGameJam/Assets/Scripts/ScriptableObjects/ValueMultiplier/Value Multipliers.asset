@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b58e7a07339b19144af7260010888554, type: 3}
   m_Name: Value Multipliers
   m_EditorClassIdentifier: 
-  increaseBuyValue: 1.15
-  increaseEffValue: 1.045
-  increasePriceValue: 1.085
+  increaseBuyValue: 1.05
+  increaseEffValue: 1.0045
+  increasePriceValue: 1.0085
