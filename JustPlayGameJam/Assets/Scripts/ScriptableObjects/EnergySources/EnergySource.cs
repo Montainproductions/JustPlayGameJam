@@ -21,5 +21,7 @@ public class EnergySource : ScriptableObject
 
     public bool availableSource;
 
+    public float unlockCost;
+
     public float enrgySourceEff, startingEff, maxEff, enrgySourcePollution;
 }
