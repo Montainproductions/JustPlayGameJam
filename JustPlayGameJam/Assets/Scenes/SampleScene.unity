@@ -3544,7 +3544,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5db9fc40a6a1bb54cae34666e6727bb0, type: 2}
   - {fileID: 11400000, guid: de5078e2b9b442348b55dc7f7a0fcba2, type: 2}
   - {fileID: 11400000, guid: 302d6c7fc541370448cdac128783ab84, type: 2}
-  playerBankBalance: 350
+  playerBankBalance: 100
   currentPollutionLevels: 0
   balanceText: {fileID: 685800858}
   pollutionText: {fileID: 120923844}

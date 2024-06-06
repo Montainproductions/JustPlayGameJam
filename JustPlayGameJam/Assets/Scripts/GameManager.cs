@@ -126,6 +126,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public float TwoDecimalPoint(float newVal)
+    {
+        float simplifiedVal = Mathf.Round(newVal * 100) * 0.01f;
+        return simplifiedVal;
+    }
+
     public EnergySource GetEnergySource()
     {
         return currentEnergySource;
@@ -149,7 +155,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdateValues()
     {
-        balanceText.text = playerBankBalance.ToString();
-        pollutionText.text = currentPollutionLevels.ToString();
+        balanceText.text = TwoDecimalPoint(playerBankBalance).ToString();
+        pollutionText.text = TwoDecimalPoint(currentPollutionLevels).ToString();
     }
 }

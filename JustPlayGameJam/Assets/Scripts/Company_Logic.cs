@@ -20,6 +20,9 @@ public class Company_Logic : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI[] costText;
 
+    [SerializeField]
+    private TextMeshProUGUI[] perMonthVals;
+
     private float constantValues;
 
     public void Start()
@@ -104,20 +107,24 @@ public class Company_Logic : MonoBehaviour
 
     public void CurrentProductionCalculation()
     {
-        companyData.currentProductionValue = companyData.initProduction * ((companyData.currentBuyLvl * equationMultipliers.increaseBuyValue) + (companyData.currentEfficencyLvl * equationMultipliers.increaseEffValue) / GameManager.Instance.GetEnergySource().enrgySourceEff);
+        float currentProdVal = companyData.initProduction * ((companyData.currentBuyLvl * equationMultipliers.increaseBuyValue) + (companyData.currentEfficencyLvl * equationMultipliers.increaseEffValue) / GameManager.Instance.GetEnergySource().enrgySourceEff);
         //Debug.Log(companyData.currentProductionValue);
+
+        PerMonthValues();
         CurrentPollutionCalculation();
     }
 
     public void CurrentPriceCalculation()
     {
         companyData.currentPriceValue = companyData.initPrice * Mathf.Pow(equationMultipliers.increasePriceValue, companyData.currentPriceLvl);
+        PerMonthValues();
     }
 
     public void CurrentPollutionCalculation()
     {
         float expontialVal = 44.5311f * companyData.initPollution;
         companyData.currentPollutionValue = 1.70721f*Mathf.Pow(companyData.currentBuyLvl, expontialVal) - (constantValues / companyData.currentEfficencyLvl);
+        PerMonthValues();
     }
 
     public void UpdateAllButtons()
@@ -127,23 +134,33 @@ public class Company_Logic : MonoBehaviour
         EfficencyButtonCost();
     }
 
+    /// <summary>
+    /// All cost and 
+    /// </summary>
+
     public void ProductionButtonCost()
     {
         companyData.currentProductionCost = (companyData.initBuyCost * companyData.currentBuyLvl) * constantValues;
         //Debug.Log(companyData.currentProductionCost);
-        costText[0].text = companyData.currentProductionCost.ToString();
+        costText[0].text = GameManager.Instance.TwoDecimalPoint(companyData.currentProductionCost).ToString();
     }
 
     public void PriceButtonCost()
     {
         companyData.currentPriceCost = (companyData.initPriceCost * companyData.currentPriceLvl) * constantValues;
         //Debug.Log(companyData.currentPriceCost);
-        costText[1].text = companyData.currentPriceCost.ToString();
+        costText[1].text = GameManager.Instance.TwoDecimalPoint(companyData.currentPriceCost).ToString();
     }
 
     public void EfficencyButtonCost()
     {
         companyData.currentEfficencyCost = (companyData.initEfficencyCost * companyData.currentEfficencyLvl) * constantValues;
-        costText[2].text = companyData.currentEfficencyCost.ToString();
+        costText[2].text = GameManager.Instance.TwoDecimalPoint(companyData.currentEfficencyCost).ToString();
+    }
+
+    public void PerMonthValues()
+    {
+        perMonthVals[0].text = GameManager.Instance.TwoDecimalPoint((companyData.currentPriceValue * companyData.currentProductionValue)).ToString();
+        perMonthVals[1].text = GameManager.Instance.TwoDecimalPoint(companyData.currentPollutionValue).ToString();
     }
 }
