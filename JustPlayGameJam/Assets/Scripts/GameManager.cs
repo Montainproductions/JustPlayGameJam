@@ -31,9 +31,9 @@ public class GameManager : MonoBehaviour
     //List of all the unlocked companies
     List<Company> unlockedCompanies = new List<Company>();
 
-
+    //UI Text for total balance and total pollution
     [SerializeField]
-    private TextMeshProUGUI balanceText, pollutionText;
+    private TextMeshProUGUI perMonthText, balanceText, pollutionText;
 
     private void Awake()
     {
@@ -74,9 +74,9 @@ public class GameManager : MonoBehaviour
 
         if (CheckCompaniesUnlocked())
         {
+            playerBankBalance += MonthlyProfit();
             for (int i = 0; i < unlockedCompanies.Count; i++)
             {
-                playerBankBalance += unlockedCompanies[i].currentProductionValue * unlockedCompanies[i].currentPriceValue;
                 currentPollutionLevels += unlockedCompanies[i].currentPollutionValue;
             }
         }
@@ -118,9 +118,51 @@ public class GameManager : MonoBehaviour
             {
                 unlockedCompanies[i].currentBuyLvl = 0;
                 unlockedCompanies[i].currentEfficencyLvl = 0;
-                unlockedCompanies[i].currentPriceLvl = 0;
             }
         }
+    }
+
+    //Updates the players balance.
+    public void AffectPlayersBalance(float cost)
+    {
+        playerBankBalance += cost;
+        UpdateValues();
+    }
+
+    public float MonthlyProfit()
+    {
+        float montlyProfits = 0;
+        for (int i = 0; i < unlockedCompanies.Count; i++)
+        {
+            montlyProfits += unlockedCompanies[i].currentProductionValue * unlockedCompanies[i].initPrice;
+        }
+        return montlyProfits;
+    }
+
+    //Updates current text total values for the players balance and pollutions.
+    public void UpdateValues()
+    {
+
+        //1000000
+        //Debug.Log(ReworkedDecimalPoint(playerBankBalance, 0.000000001f).ToString());
+        // Debug.Log(playerBankBalance);
+
+        if (1e-09 > playerBankBalance && playerBankBalance >= 1e-6)
+        {
+            balanceText.text = $"{ReworkedDecimalPoint(playerBankBalance, 0.000001f)}" + " Million";
+        }
+        else if (1e-12 > playerBankBalance && playerBankBalance >= 1e-09)
+        {
+            balanceText.text = $"{ReworkedDecimalPoint(playerBankBalance, 0.000000001f)}" + " Billion";
+        }
+        else if (1e-15 > playerBankBalance && playerBankBalance >= 1e-12)
+        {
+            balanceText.text = $"{ReworkedDecimalPoint(playerBankBalance, 0.000000000001f)}" + " Trillion";
+        }
+
+        perMonthText.text = ReworkedDecimalPoint(MonthlyProfit(), 0.01f, 100).ToString();
+        //balanceText.text = TwoDecimalPoint(playerBankBalance).ToString();
+        pollutionText.text = ReworkedDecimalPoint(currentPollutionLevels, 0.01f, 100).ToString();
     }
 
     //Checks if the company is currently unlocked
@@ -134,10 +176,10 @@ public class GameManager : MonoBehaviour
     }
 
     //Returns a float value updates to the nearest hundth value
-    public float TwoDecimalPoint(float newVal)
+    public float ReworkedDecimalPoint(float value, float decimalPoint, float roundedNumb = 1f)
     {
-        float simplifiedVal = Mathf.Round(newVal * 100) * 0.01f;
-        return simplifiedVal;
+        float newVal = Mathf.Round(value * roundedNumb) * decimalPoint;
+        return newVal;
     }
 
     //Returns the current active energy source
@@ -156,19 +198,5 @@ public class GameManager : MonoBehaviour
     public float GetPollutionLevel()
     {
         return currentPollutionLevels;
-    }
-
-    //Updates the players balance.
-    public void AffectPlayersBalance(float cost)
-    {
-        playerBankBalance += cost;
-        UpdateValues();
-    }
-
-    //Updates current text total values for the players balance and pollutions.
-    public void UpdateValues()
-    {
-        balanceText.text = TwoDecimalPoint(playerBankBalance).ToString();
-        pollutionText.text = TwoDecimalPoint(currentPollutionLevels).ToString();
     }
 }

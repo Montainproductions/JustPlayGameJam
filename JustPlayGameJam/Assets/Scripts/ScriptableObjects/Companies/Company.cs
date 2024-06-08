@@ -38,24 +38,24 @@ public class Company : ScriptableObject
 
     [Header("Initial values")]
     public float initProduction;
-    public float initPrice, initPollution;
+    public float initPollution, initPrice;
 
     [Header("Initial costs for upgrades")]
     public float initBuyCost;
-    public float initPriceCost, initEfficencyCost;
+    public float initEfficencyCost;
 
     [Header("Current levels bought")]
     public float currentBuyLvl;
-    public float currentPriceLvl, currentEfficencyLvl;
+    public float currentEfficencyLvl;
 
     [Header("Current calculated values")]
     public float currentProductionValue;
-    public float currentPriceValue, currentPollutionValue, reductionPollution;
+    public float currentPollutionValue, reductionPollution;
 
     [Header("CurrentButtonCosts")]
     public float currentProductionCost;
-    public float currentPriceCost, currentEfficencyCost;
+    public float currentEfficencyCost;
 
     [Header("Arbitrary company value")]
-    public float companyValAffecter;
+    public float companyScaler;
 }
