@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,6 +28,9 @@ public class GameManager : MonoBehaviour
     //Players current balance and pollution level
     [SerializeField]
     private float playerBankBalance, currentPollutionLevels;
+
+    private string displayedMoney, fullTextMoney;
+    private float moneylength, reducedBalance;
 
     //List of all the unlocked companies
     List<Company> unlockedCompanies = new List<Company>();
@@ -142,27 +146,49 @@ public class GameManager : MonoBehaviour
     //Updates current text total values for the players balance and pollutions.
     public void UpdateValues()
     {
+        if(1000000 > playerBankBalance){
+            displayedMoney = $"{ReworkedDecimalPoint(playerBankBalance, 0.01f, 100)}";
+            balanceText.text = displayedMoney;
+        }else if(1000000000 <= playerBankBalance){
+            moneylength = Mathf.Log10(playerBankBalance);
 
-        //1000000
-        //Debug.Log(ReworkedDecimalPoint(playerBankBalance, 0.000000001f).ToString());
-        // Debug.Log(playerBankBalance);
+            fullTextMoney = playerBankBalance.ToString("F0");
 
-        if (1e-09 > playerBankBalance && playerBankBalance >= 1e-6)
-        {
-            balanceText.text = $"{ReworkedDecimalPoint(playerBankBalance, 0.000001f)}" + " Million";
-        }
-        else if (1e-12 > playerBankBalance && playerBankBalance >= 1e-09)
-        {
-            balanceText.text = $"{ReworkedDecimalPoint(playerBankBalance, 0.000000001f)}" + " Billion";
-        }
-        else if (1e-15 > playerBankBalance && playerBankBalance >= 1e-12)
-        {
-            balanceText.text = $"{ReworkedDecimalPoint(playerBankBalance, 0.000000000001f)}" + " Trillion";
-        }
+            for (int i = 0; i < 4; i++)
+            {
+                displayedMoney += fullTextMoney[i];
+            }
 
+            CorrectPrefex();
+
+            balanceText.text = displayedMoney;
+        }
+        displayedMoney = " ";
         perMonthText.text = ReworkedDecimalPoint(MonthlyProfit(), 0.01f, 100).ToString();
         //balanceText.text = TwoDecimalPoint(playerBankBalance).ToString();
         pollutionText.text = ReworkedDecimalPoint(currentPollutionLevels, 0.01f, 100).ToString();
+    }
+
+    public string CorrectPrefex()
+    {
+        //1000000
+        switch (moneylength)
+        {
+            case 6: //Million
+            case 7: //Million
+            case 8: //Million
+                return "Million";
+            case 9: //Billion
+            case 10: //Billion
+            case 11: //Billion
+                return "Billion";
+            case 12:
+            case 13:
+            case 14:
+                return "Trillion";
+            default:
+                return "";
+        }
     }
 
     //Checks if the company is currently unlocked
@@ -175,11 +201,19 @@ public class GameManager : MonoBehaviour
         return false;
     }
 
-    //Returns a float value updates to the nearest hundth value
+    //Returns a float value updates to the nearest hundth
     public float ReworkedDecimalPoint(float value, float decimalPoint, float roundedNumb = 1f)
     {
+        //float reducedValue = value
+
         float newVal = Mathf.Round(value * roundedNumb) * decimalPoint;
         return newVal;
+    }
+
+    public int NumbLength()
+    {
+        string val = $"{ReworkedDecimalPoint(playerBankBalance, 1, 1)}";
+        return val.Length;
     }
 
     //Returns the current active energy source
