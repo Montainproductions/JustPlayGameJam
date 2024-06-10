@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
 using System;
+using static EnergySource;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,17 +14,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float tickTimer;
 
-    //Code Base for energy sources
-    [SerializeField]
-    private EnergySource_Logic[] codeEnergySource;
-
     //All energy sources
     [SerializeField]
-    private EnergySource[] allEnergySources;
-
-    private List<EnergySource> unlockedEnergySources;
-
-    private EnergySource currentEnergySource;
+    private GameObject energySources;
 
     //Players current balance and pollution level
     [SerializeField]
@@ -54,7 +47,6 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentEnergySource = allEnergySources[0];
         UpdateValues();
         StartCoroutine(MonthlyTick());
     }
@@ -100,17 +92,10 @@ public class GameManager : MonoBehaviour
         unlockedCompanies.Add(newCompany);
     }
 
-    //When the player buys a new energy source and it updates the current one in use.
-    public void BoughtEnergySource(EnergySource newEnergySrouce)
-    {
-        currentEnergySource = newEnergySrouce;
-    }
-
     //Unlocks new energy source
-    public void EnergySourceDiscovered(int newEnergySource)
+    public void EnergySourceBought(GameObject newEnergySource)
     {
-        codeEnergySource[newEnergySource].EnergySourceAvailability();
-        unlockedEnergySources.Add(allEnergySources[newEnergySource]);
+        energySources = newEnergySource;
     }
 
     //Will restart the buy levels to 0 when the game is restarted.
@@ -130,6 +115,7 @@ public class GameManager : MonoBehaviour
     public void AffectPlayersBalance(float cost)
     {
         playerBankBalance += cost;
+        //Debug.Log("Players Balanace: " + playerBankBalance);
         UpdateValues();
     }
 
@@ -146,22 +132,24 @@ public class GameManager : MonoBehaviour
     //Updates current text total values for the players balance and pollutions.
     public void UpdateValues()
     {
+        //10100000
         if(1000000 > playerBankBalance){
             displayedMoney = $"{ReworkedDecimalPoint(playerBankBalance, 0.01f, 100)}";
             balanceText.text = displayedMoney;
-        }else if(1000000000 <= playerBankBalance){
-            moneylength = Mathf.Log10(playerBankBalance);
+        }else if(1000000 <= playerBankBalance){
+
+            moneylength = Mathf.Floor(Mathf.Log10(playerBankBalance));
+            //Debug.Log("Length of log: " + moneylength);
+            moneylength = moneylength / 3;
 
             fullTextMoney = playerBankBalance.ToString("F0");
+            //Debug.Log("Entire Value In Text: " + fullTextMoney);
 
-            for (int i = 0; i < 4; i++)
-            {
-                displayedMoney += fullTextMoney[i];
-            }
+            CorrectValueSize();
 
-            CorrectPrefex();
+            string prefex = CorrectPrefex();
 
-            balanceText.text = displayedMoney;
+            balanceText.text = $"{ReworkedDecimalPoint(reducedBalance, 0.001f)}" + prefex;
         }
         displayedMoney = " ";
         perMonthText.text = ReworkedDecimalPoint(MonthlyProfit(), 0.01f, 100).ToString();
@@ -169,23 +157,62 @@ public class GameManager : MonoBehaviour
         pollutionText.text = ReworkedDecimalPoint(currentPollutionLevels, 0.01f, 100).ToString();
     }
 
+    public void CorrectValueSize()
+    {
+        //Debug.Log(moneylength%3);
+        float intValue = Mathf.Floor(moneylength);
+        float remainder = moneylength % 3;
+        remainder = remainder - intValue;
+        //Debug.Log("Remainder: " + remainder);
+
+        if (remainder <= 0)
+        {
+            BalanceSize(0);
+        }else if (0.4f > remainder && remainder > 0.3f)
+        {
+            BalanceSize(1);
+        }
+        else
+        {
+            BalanceSize(2);
+        }
+    }
+
+    public void BalanceSize(int caseSize)
+    {
+        for (int i = 0; i < 4 + caseSize; i++)
+        {
+            displayedMoney += fullTextMoney[i];
+        }
+        reducedBalance = Int32.Parse(displayedMoney);
+        //Debug.Log("String: " + displayedMoney);
+        //Debug.Log("Float: " + reducedBalance);
+
+        //reducedBalance = ReworkedDecimalPoint(reducedBalance, 0.001f);
+
+        //Debug.Log("Updated Reduced Bal: " + reducedBalance);
+    }
+
     public string CorrectPrefex()
     {
         //1000000
+        moneylength = Mathf.Floor(moneylength);
+        //Debug.Log("After minimizing: " + moneylength);
+
         switch (moneylength)
         {
-            case 6: //Million
-            case 7: //Million
-            case 8: //Million
-                return "Million";
-            case 9: //Billion
-            case 10: //Billion
-            case 11: //Billion
-                return "Billion";
-            case 12:
-            case 13:
-            case 14:
-                return "Trillion";
+            case 2: //Million
+                return " Million";
+
+            case 3: //Billion
+                return " Billion";
+
+            case 4: //Trillion
+                return " Tillion";
+
+            case 5:
+                return " Quattuorion";
+
             default:
                 return "";
         }
@@ -210,27 +237,9 @@ public class GameManager : MonoBehaviour
         return newVal;
     }
 
-    public int NumbLength()
-    {
-        string val = $"{ReworkedDecimalPoint(playerBankBalance, 1, 1)}";
-        return val.Length;
-    }
-
-    //Returns the current active energy source
-    public EnergySource GetEnergySource()
-    {
-        return currentEnergySource;
-    }
-
     //Returns the current player balance
     public float GetBalance()
     {
         return playerBankBalance;
-    }
-
-    //Returns the current pollution level.
-    public float GetPollutionLevel()
-    {
-        return currentPollutionLevels;
     }
 }

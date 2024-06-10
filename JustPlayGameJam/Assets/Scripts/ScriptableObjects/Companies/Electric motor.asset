@@ -12,23 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0883f75f38d203248b84a5a3fb5df1ca, type: 3}
   m_Name: Electric Motor
   m_EditorClassIdentifier: 
-  unlocked: 0
+  unlocked: 1
   businessName: 4
-  unlocksEnrgySource: 1
+  unlocksEnrgySource: {fileID: 11400000, guid: 8bfbce02476f78b49be2f656bf375cfb, type: 2}
+  initUnlockCost: 80000
   initProduction: 1
-  initPrice: 100
   initPollution: 0.016
-  initBuyCost: 100
-  initPriceCost: 120
-  initEfficencyCost: 140
+  initPrice: 100
+  initBuyCost: 2000
+  initEfficencyCost: 4000
   currentBuyLvl: 0
-  currentPriceLvl: 0
   currentEfficencyLvl: 0
-  currentProductionValue: 0
-  currentPriceValue: 0
-  currentPollutionValue: 0
+  currentProductionValue: 2.0444999
+  currentPollutionValue: 0.95243603
   reductionPollution: 0
   currentProductionCost: 0
-  currentPriceCost: 0
   currentEfficencyCost: 0
-  companyValAffecter: 0
+  companyScaler: 0

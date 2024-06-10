@@ -20,6 +20,9 @@ public class Company_Logic : MonoBehaviour
     [SerializeField]
     private GameObject unlocked, locked;
 
+    [SerializeField]
+    private GameObject energySource;
+
     //Texts showing costs for upgrades
     [SerializeField]
     private TextMeshProUGUI[] costText;
@@ -58,9 +61,9 @@ public class Company_Logic : MonoBehaviour
             UnlockCompanyFirst();
 
             //Checks if the company also unlocks a power source
-            if(companyData.unlocksEnrgySource != 0)
+            if(companyData.unlocksEnrgySource != null)
             {
-                GameManager.Instance.EnergySourceDiscovered(companyData.unlocksEnrgySource);
+                GameManager.Instance.EnergySourceBought(energySource);
             }
         }
         else

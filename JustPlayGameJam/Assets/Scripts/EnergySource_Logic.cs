@@ -49,7 +49,7 @@ public class EnergySource_Logic : MonoBehaviour
                 unlocked.SetActive(true);
 
                 //Update current energy source
-                GameManager.Instance.BoughtEnergySource(energySource);
+                GameManager.Instance.EnergySourceBought(energySource);
 
                 IncreaseEfficencyLvl();
             }

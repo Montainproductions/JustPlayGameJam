@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static EnergySource;
 
 [CreateAssetMenu(menuName = "CompanyData")]
 public class Company : ScriptableObject
@@ -31,7 +32,7 @@ public class Company : ScriptableObject
 
     public CompanyName businessName;
 
-    public int unlocksEnrgySource;
+    public EnergySource unlocksEnrgySource;
 
     [Header("Unlock Price")]
     public float initUnlockCost;

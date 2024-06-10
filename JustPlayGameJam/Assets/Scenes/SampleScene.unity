@@ -3602,7 +3602,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69f95260d07e8084d92264fdee61c2f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tickTimer: 1.85
+  tickTimer: 1.75
   codeEnergySource:
   - {fileID: 4155400610111346562}
   - {fileID: 1361946955}
@@ -3618,7 +3618,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5db9fc40a6a1bb54cae34666e6727bb0, type: 2}
   - {fileID: 11400000, guid: de5078e2b9b442348b55dc7f7a0fcba2, type: 2}
   - {fileID: 11400000, guid: 302d6c7fc541370448cdac128783ab84, type: 2}
-  playerBankBalance: 1.00000435e+9
+  playerBankBalance: 100
   currentPollutionLevels: 0
   perMonthText: {fileID: 685800858}
   balanceText: {fileID: 424218530}
