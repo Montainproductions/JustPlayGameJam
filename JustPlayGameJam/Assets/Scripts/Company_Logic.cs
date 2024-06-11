@@ -31,6 +31,12 @@ public class Company_Logic : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI[] perMonthVals;
 
+    [SerializeField]
+    private CustomButton[] buyButtons;
+
+    [SerializeField]
+    private Color[] incorrectAmount, correctAmount;
+
     public void Start()
     {
         unlockCostText.text = companyData.initUnlockCost.ToString();
@@ -42,12 +48,11 @@ public class Company_Logic : MonoBehaviour
     public void UnlockCompany()
     {
         //Checks if the player has enough money to buy it.
-        float balanceLeft = GameManager.Instance.GetBalance() - companyData.initUnlockCost;
-        if (balanceLeft >= 0)
+        if (GameManager.Instance.ChecksPurcheseAbility(companyData.initUnlockCost))
         {
             //Updates players balance
             GameManager.Instance.AffectPlayersBalance(-companyData.initUnlockCost);
-            
+
             //Adds to list of companies that have been unlocked.
             GameManager.Instance.CompanyUnlocked(companyData);
 
@@ -61,9 +66,9 @@ public class Company_Logic : MonoBehaviour
             UnlockCompanyFirst();
 
             //Checks if the company also unlocks a power source
-            if(companyData.unlocksEnrgySource != null)
+            if(companyData.unlocksEnrgySource)
             {
-                GameManager.Instance.EnergySourceBought(energySource);
+                GameManager.Instance.EnergySourceDiscovered(energySource);
             }
         }
         else
@@ -85,14 +90,14 @@ public class Company_Logic : MonoBehaviour
         EfficencyButtonCost();
     }
 
-    public void IncreaseProduction()
+    public void IncreaseProductionLvl()
     {
         //Checks if the player has enough money to buy the upgrade
-        float remainingUpgradeBalance = GameManager.Instance.GetBalance() - companyData.currentProductionCost;
-        if (remainingUpgradeBalance >= 0)
+        if (GameManager.Instance.ChecksPurcheseAbility(companyData.currentProductionCost))
         {
             //Update player balance
             GameManager.Instance.AffectPlayersBalance(-companyData.currentProductionCost);
+
             companyData.currentBuyLvl++;
 
             //Update the cost of the next upgrade
@@ -107,11 +112,11 @@ public class Company_Logic : MonoBehaviour
     public void IncreaseEfficencyLvl()
     {
         //Checks if the player has enough money to buy the upgrade
-        float remainingUpgradeBalance = GameManager.Instance.GetBalance() - companyData.currentEfficencyCost;
-        if (remainingUpgradeBalance >= 0)
+        if (GameManager.Instance.ChecksPurcheseAbility(companyData.currentEfficencyCost))
         {
             //Updates players balance
             GameManager.Instance.AffectPlayersBalance(-companyData.currentEfficencyCost);
+            
             companyData.currentEfficencyLvl++;
             
             //Update the cost of the next upgrade
@@ -125,11 +130,8 @@ public class Company_Logic : MonoBehaviour
     //Calculated the amount produced per month of the item.
     public void CurrentProductionCalculation()
     {
-        companyData.currentProductionValue = companyData.initProduction * ((companyData.currentBuyLvl * equationMultipliers.increaseBuyValue) + (companyData.currentEfficencyLvl * equationMultipliers.increaseEffValue) / GameManager.Instance.GetEnergySource().enrgySourceEff);
+        companyData.currentProductionValue = companyData.initProduction * ((companyData.currentBuyLvl * equationMultipliers.increaseBuyValue) + (companyData.currentEfficencyLvl * equationMultipliers.increaseEffValue) / GameManager.Instance.GetEnergySource());
         //Debug.Log(companyData.currentProductionValue);
-
-        //Updates text values
-        PerMonthValues();
 
         //Updated pollution produced per month.
         CurrentPollutionCalculation();
@@ -168,8 +170,32 @@ public class Company_Logic : MonoBehaviour
     //Updates text on how much is produced per month
     public void PerMonthValues()
     {
-        GameManager.Instance.UpdateValues();
         perMonthVals[0].text = GameManager.Instance.ReworkedDecimalPoint(companyData.initPrice * companyData.currentProductionValue, 0.01f, 100).ToString();
         perMonthVals[1].text = GameManager.Instance.ReworkedDecimalPoint(companyData.currentPollutionValue, 0.01f, 100).ToString();
+    }
+
+    public void ButtonColor()
+    {
+        if (companyData.unlocked)
+        {
+            CheckPrice(1, companyData.currentProductionCost);
+            CheckPrice(2, companyData.currentEfficencyCost);
+        }
+        else
+        {
+            CheckPrice(0, companyData.initUnlockCost);
+        }
+    }
+
+    public void CheckPrice(int button, float costVal)
+    {
+        if (GameManager.Instance.ChecksPurcheseAbility(costVal))
+        {
+            buyButtons[button].UpdateColors(correctAmount[0], correctAmount[1], correctAmount[2]);
+        }
+        else
+        {
+            buyButtons[button].UpdateColors(incorrectAmount[0], incorrectAmount[1], incorrectAmount[2]);
+        }
     }
 }

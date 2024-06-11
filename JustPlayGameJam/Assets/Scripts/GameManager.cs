@@ -28,6 +28,9 @@ public class GameManager : MonoBehaviour
     //List of all the unlocked companies
     List<Company> unlockedCompanies = new List<Company>();
 
+    [SerializeField]
+    private Company_Logic[] company_Logic;
+
     //UI Text for total balance and total pollution
     [SerializeField]
     private TextMeshProUGUI perMonthText, balanceText, pollutionText;
@@ -54,7 +57,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnDestroy()
@@ -93,9 +96,14 @@ public class GameManager : MonoBehaviour
     }
 
     //Unlocks new energy source
-    public void EnergySourceBought(GameObject newEnergySource)
+    public void EnergySourceUnlocked(GameObject newEnergySource)
     {
         energySources = newEnergySource;
+    }
+
+    public void EnergySourceDiscovered(GameObject newEnergySource)
+    {
+        newEnergySource.GetComponent<EnergySource_Logic>().EnergySourceAvailability();
     }
 
     //Will restart the buy levels to 0 when the game is restarted.
@@ -111,14 +119,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //Updates the players balance.
-    public void AffectPlayersBalance(float cost)
-    {
-        playerBankBalance += cost;
-        //Debug.Log("Players Balanace: " + playerBankBalance);
-        UpdateValues();
-    }
-
     public float MonthlyProfit()
     {
         float montlyProfits = 0;
@@ -132,11 +132,15 @@ public class GameManager : MonoBehaviour
     //Updates current text total values for the players balance and pollutions.
     public void UpdateValues()
     {
+        UpdateButtonColor();
+
         //10100000
-        if(1000000 > playerBankBalance){
+        if (1000000 > playerBankBalance)
+        {
             displayedMoney = $"{ReworkedDecimalPoint(playerBankBalance, 0.01f, 100)}";
             balanceText.text = displayedMoney;
-        }else if(1000000 <= playerBankBalance){
+        } else if (1000000 <= playerBankBalance)
+        {
 
             moneylength = Mathf.Floor(Mathf.Log10(playerBankBalance));
             //Debug.Log("Length of log: " + moneylength);
@@ -151,7 +155,9 @@ public class GameManager : MonoBehaviour
 
             balanceText.text = $"{ReworkedDecimalPoint(reducedBalance, 0.001f)}" + prefex;
         }
+
         displayedMoney = " ";
+
         perMonthText.text = ReworkedDecimalPoint(MonthlyProfit(), 0.01f, 100).ToString();
         //balanceText.text = TwoDecimalPoint(playerBankBalance).ToString();
         pollutionText.text = ReworkedDecimalPoint(currentPollutionLevels, 0.01f, 100).ToString();
@@ -168,7 +174,7 @@ public class GameManager : MonoBehaviour
         if (remainder <= 0)
         {
             BalanceSize(0);
-        }else if (0.4f > remainder && remainder > 0.3f)
+        } else if (0.4f > remainder && remainder > 0.3f)
         {
             BalanceSize(1);
         }
@@ -218,14 +224,40 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //Updates the players balance.
+    public void AffectPlayersBalance(float cost)
+    {
+        playerBankBalance += cost;
+        //Debug.Log("Players Balanace: " + playerBankBalance);
+        UpdateValues();
+    }
+
+    public bool ChecksPurcheseAbility(float costOfItem)
+    {
+        float moneyLeft = playerBankBalance - costOfItem;
+        if (moneyLeft < 0)
+        {
+            return false;
+        }
+        return true;
+    }
+
     //Checks if the company is currently unlocked
     public bool CheckCompaniesUnlocked()
     {
-        if(unlockedCompanies.Count > 0)
+        if (unlockedCompanies.Count > 0)
         {
             return true;
         }
         return false;
+    }
+
+    public void UpdateButtonColor()
+    {
+        for (int i = 0; i < company_Logic.Length; i++)
+        {
+            company_Logic[i].ButtonColor();
+        }
     }
 
     //Returns a float value updates to the nearest hundth
@@ -237,9 +269,19 @@ public class GameManager : MonoBehaviour
         return newVal;
     }
 
+    public void ButtonColorUpdate()
+    {
+
+    }
+
     //Returns the current player balance
     public float GetBalance()
     {
         return playerBankBalance;
+    }
+
+    public float GetEnergySource()
+    {
+        return 1;
     }
 }

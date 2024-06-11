@@ -21,6 +21,14 @@ public class CustomButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public class CustomUIEvent : UnityEvent { }
     public CustomUIEvent OnEvent;
 
+    public void UpdateColors(Color startColor, Color enteredColor, Color selectedColor)
+    {
+        Debug.Log(startColor + " " + enteredColor + " " + selectedColor);
+        this.startColor = startColor;
+        this.enteredColor = enteredColor;
+        this.downColor = selectedColor;
+    }
+
 
     IEnumerator Transition(Vector3 newSize, Color newColor, float transitionTime)
     {

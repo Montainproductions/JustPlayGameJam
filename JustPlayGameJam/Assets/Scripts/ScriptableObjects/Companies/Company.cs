@@ -32,7 +32,7 @@ public class Company : ScriptableObject
 
     public CompanyName businessName;
 
-    public EnergySource unlocksEnrgySource;
+    public bool unlocksEnrgySource;
 
     [Header("Unlock Price")]
     public float initUnlockCost;

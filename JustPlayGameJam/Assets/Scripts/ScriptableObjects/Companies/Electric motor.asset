@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unlocked: 1
   businessName: 4
-  unlocksEnrgySource: {fileID: 11400000, guid: 8bfbce02476f78b49be2f656bf375cfb, type: 2}
-  initUnlockCost: 80000
+  unlocksEnrgySource: 1
+  initUnlockCost: 200000
   initProduction: 1
   initPollution: 0.016
   initPrice: 100
