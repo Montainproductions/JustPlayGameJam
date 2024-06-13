@@ -21,12 +21,26 @@ public class CustomButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public class CustomUIEvent : UnityEvent { }
     public CustomUIEvent OnEvent;
 
+    private int whichTransition;
+
     public void UpdateColors(Color startColor, Color enteredColor, Color selectedColor)
     {
-        Debug.Log(startColor + " " + enteredColor + " " + selectedColor);
+        //Debug.Log(startColor + " " + enteredColor + " " + selectedColor);
         this.startColor = startColor;
         this.enteredColor = enteredColor;
         this.downColor = selectedColor;
+
+        if (whichTransition == 0)
+        {
+            StartCoroutine(Transition(transform.localScale, this.startColor, 0.1f));
+        }else if (whichTransition == 1)
+        {
+            StartCoroutine(Transition(transform.localScale, this.enteredColor, 0.1f));
+        }
+        else
+        {
+            StartCoroutine(Transition(transform.localScale, this.downColor, 0.1f));
+        }
     }
 
 
@@ -47,21 +61,25 @@ public class CustomButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        whichTransition = 1;
         StartCoroutine(Transition(enteredVector, enteredColor, 0.15f));
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        whichTransition = 0;
         StartCoroutine(Transition(startVector, startColor, 0.15f));
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        whichTransition = 2;
         StartCoroutine(Transition(downVector, downColor, 0.3f));
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        whichTransition = 2;
         //StartCoroutine(Transition(startVector, startColor, 0.02f));
         OnEvent.Invoke();
         Debug.Log("UI Button Clicked");

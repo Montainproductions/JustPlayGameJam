@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0883f75f38d203248b84a5a3fb5df1ca, type: 3}
   m_Name: Electric Motor
   m_EditorClassIdentifier: 
-  unlocked: 1
+  unlocked: 0
   businessName: 4
   unlocksEnrgySource: 1
   initUnlockCost: 200000

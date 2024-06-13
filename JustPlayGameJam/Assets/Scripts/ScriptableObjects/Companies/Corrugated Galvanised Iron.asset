@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0883f75f38d203248b84a5a3fb5df1ca, type: 3}
   m_Name: Corrugated Galvanised Iron
   m_EditorClassIdentifier: 
-  unlocked: 1
+  unlocked: 0
   businessName: 2
   unlocksEnrgySource: 0
   initUnlockCost: 100
@@ -23,9 +23,9 @@ MonoBehaviour:
   initEfficencyCost: 65
   currentBuyLvl: 0
   currentEfficencyLvl: 0
-  currentProductionValue: 30.018
-  currentPollutionValue: 26.99485
+  currentProductionValue: 2.0444999
+  currentPollutionValue: 0.95243603
   reductionPollution: 0
-  currentProductionCost: 119.000465
-  currentEfficencyCost: 102.278755
+  currentProductionCost: 7.84
+  currentEfficencyCost: 72.8
   companyScaler: 1.12

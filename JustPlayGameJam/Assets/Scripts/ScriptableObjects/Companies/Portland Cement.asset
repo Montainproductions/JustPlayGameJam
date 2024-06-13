@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0883f75f38d203248b84a5a3fb5df1ca, type: 3}
   m_Name: Portland Cement
   m_EditorClassIdentifier: 
-  unlocked: 1
+  unlocked: 0
   businessName: 3
   unlocksEnrgySource: 0
   initUnlockCost: 18000

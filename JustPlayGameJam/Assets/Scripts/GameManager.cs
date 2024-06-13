@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UpdateValues();
+        StartCoroutine(UpdateValues());
         StartCoroutine(MonthlyTick());
     }
 
@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
         //Debug.Log("Players Bank: " + playerBankBalance);
 
         //Update values
-        UpdateValues();
+        StartCoroutine(UpdateValues());
 
         StartCoroutine(MonthlyTick());
         yield return null;
@@ -113,6 +113,7 @@ public class GameManager : MonoBehaviour
         {
             for (int i = 0; i < unlockedCompanies.Count; i++)
             {
+                unlockedCompanies[i].unlocked = false;
                 unlockedCompanies[i].currentBuyLvl = 0;
                 unlockedCompanies[i].currentEfficencyLvl = 0;
             }
@@ -130,7 +131,7 @@ public class GameManager : MonoBehaviour
     }
 
     //Updates current text total values for the players balance and pollutions.
-    public void UpdateValues()
+    IEnumerator UpdateValues()
     {
         UpdateButtonColor();
 
@@ -154,6 +155,7 @@ public class GameManager : MonoBehaviour
             string prefex = CorrectPrefex();
 
             balanceText.text = $"{ReworkedDecimalPoint(reducedBalance, 0.001f)}" + prefex;
+            yield return null;
         }
 
         displayedMoney = " ";
@@ -161,6 +163,8 @@ public class GameManager : MonoBehaviour
         perMonthText.text = ReworkedDecimalPoint(MonthlyProfit(), 0.01f, 100).ToString();
         //balanceText.text = TwoDecimalPoint(playerBankBalance).ToString();
         pollutionText.text = ReworkedDecimalPoint(currentPollutionLevels, 0.01f, 100).ToString();
+
+        yield return null;
     }
 
     public void CorrectValueSize()
@@ -227,9 +231,11 @@ public class GameManager : MonoBehaviour
     //Updates the players balance.
     public void AffectPlayersBalance(float cost)
     {
+        UpdateButtonColor();
+
         playerBankBalance += cost;
         //Debug.Log("Players Balanace: " + playerBankBalance);
-        UpdateValues();
+        StartCoroutine(UpdateValues());
     }
 
     public bool ChecksPurcheseAbility(float costOfItem)
@@ -256,6 +262,7 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < company_Logic.Length; i++)
         {
+            Debug.Log("Which Comanpy: " + i);
             company_Logic[i].ButtonColor();
         }
     }
@@ -267,11 +274,6 @@ public class GameManager : MonoBehaviour
 
         float newVal = Mathf.Round(value * roundedNumb) * decimalPoint;
         return newVal;
-    }
-
-    public void ButtonColorUpdate()
-    {
-
     }
 
     //Returns the current player balance

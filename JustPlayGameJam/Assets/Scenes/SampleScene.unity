@@ -3629,7 +3629,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69f95260d07e8084d92264fdee61c2f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tickTimer: 1.75
+  tickTimer: 1.7
   energySources: {fileID: 0}
   playerBankBalance: 100
   currentPollutionLevels: 0

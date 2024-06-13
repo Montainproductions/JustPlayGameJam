@@ -189,6 +189,7 @@ public class Company_Logic : MonoBehaviour
 
     public void CheckPrice(int button, float costVal)
     {
+        //Debug.Log("Which Button: " + button);
         if (GameManager.Instance.ChecksPurcheseAbility(costVal))
         {
             buyButtons[button].UpdateColors(correctAmount[0], correctAmount[1], correctAmount[2]);
