@@ -32,11 +32,11 @@ public class CustomButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
         if(whichTransition == 2 || whichTransition == 1)
         {
-            StartCoroutine(Transition(transform.localScale, enteredColor, 0.25f, 1));
+            StartCoroutine(Transition(transform.localScale, enteredColor, 0.2f, 1));
         }
         else
         {
-            StartCoroutine(Transition(transform.localScale, startColor, 0.25f, 0));
+            StartCoroutine(Transition(transform.localScale, startColor, 0.2f, 0));
         }
     }
 
@@ -60,19 +60,19 @@ public class CustomButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public void OnPointerEnter(PointerEventData eventData)
     {
         //whichTransition = 1;
-        StartCoroutine(Transition(enteredVector, enteredColor, 0.15f, 1));
+        StartCoroutine(Transition(enteredVector, enteredColor, 0.1f, 1));
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         //whichTransition = 0;
-        StartCoroutine(Transition(startVector, startColor, 0.15f, 0));
+        StartCoroutine(Transition(startVector, startColor, 0.1f, 0));
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
         //whichTransition = 2;
-        StartCoroutine(Transition(downVector, downColor, 0.25f, 1));
+        StartCoroutine(Transition(downVector, downColor, 0.2f, 1));
     }
 
     public void OnPointerClick(PointerEventData eventData)

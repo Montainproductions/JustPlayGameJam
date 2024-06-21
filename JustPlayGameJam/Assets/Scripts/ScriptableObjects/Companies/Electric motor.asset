@@ -28,4 +28,4 @@ MonoBehaviour:
   reductionPollution: 0
   currentProductionCost: 0
   currentEfficencyCost: 0
-  companyScaler: 0
+  companyScaler: 1.19
