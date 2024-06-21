@@ -3639,23 +3639,12 @@ MonoBehaviour:
   - {fileID: 1592102131}
   - {fileID: 2112193172}
   - {fileID: 2022830396}
-  - {fileID: 1822170037}
+  - {fileID: 2058252597}
   - {fileID: 1793800529}
   - {fileID: 2072118086}
   perMonthText: {fileID: 685800858}
   balanceText: {fileID: 424218530}
   pollutionText: {fileID: 120923844}
---- !u!114 &1822170037 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4155400611028460792, guid: 9e494d0ae7ead0a47b246bc761ba96ff, type: 3}
-  m_PrefabInstance: {fileID: 398517619}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3851ace80e49a274aacf659c04228ee7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1860681078
 GameObject:
   m_ObjectHideFlags: 0
@@ -4584,6 +4573,17 @@ Transform:
   m_Father: {fileID: 1351055352}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2058252597 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4155400611028460792, guid: 9e494d0ae7ead0a47b246bc761ba96ff, type: 3}
+  m_PrefabInstance: {fileID: 398517619}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3851ace80e49a274aacf659c04228ee7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &2072118085 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8781384661657796727, guid: 9e494d0ae7ead0a47b246bc761ba96ff, type: 3}
@@ -4835,7 +4835,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1009842608554232636, guid: 9e494d0ae7ead0a47b246bc761ba96ff, type: 3}
       propertyPath: OnEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1009842608554232636, guid: 9e494d0ae7ead0a47b246bc761ba96ff, type: 3}
       propertyPath: OnEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -4908,6 +4908,14 @@ PrefabInstance:
     - target: {fileID: 4155400611028460792, guid: 9e494d0ae7ead0a47b246bc761ba96ff, type: 3}
       propertyPath: costText.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4155400611028460792, guid: 9e494d0ae7ead0a47b246bc761ba96ff, type: 3}
+      propertyPath: correctAmount.Array.data[2].a
+      value: 0.6862745
+      objectReference: {fileID: 0}
+    - target: {fileID: 4155400611028460792, guid: 9e494d0ae7ead0a47b246bc761ba96ff, type: 3}
+      propertyPath: incorrectAmount.Array.data[2].a
+      value: 0.6862745
       objectReference: {fileID: 0}
     - target: {fileID: 4155400611028460793, guid: 9e494d0ae7ead0a47b246bc761ba96ff, type: 3}
       propertyPath: m_RootOrder

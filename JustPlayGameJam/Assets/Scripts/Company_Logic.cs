@@ -35,7 +35,7 @@ public class Company_Logic : MonoBehaviour
     private CustomButton[] buyButtons;
 
     [SerializeField]
-    private Color[] incorrectAmount, correctAmount;
+    private Color[] correctAmount, incorrectAmount;
 
     public void Start()
     {
@@ -190,13 +190,26 @@ public class Company_Logic : MonoBehaviour
     public void CheckPrice(int button, float costVal)
     {
         //Debug.Log("Which Button: " + button);
-        if (GameManager.Instance.ChecksPurcheseAbility(costVal))
+        float leftOver = GameManager.Instance.GetBalance() - costVal;
+        //Debug.Log(leftOver);
+        //Debug.Log(" ");
+        if (leftOver < 0)
         {
-            buyButtons[button].UpdateColors(correctAmount[0], correctAmount[1], correctAmount[2]);
+            /*Debug.Log(" ");
+            Debug.Log("Which Button: " + button);
+            Debug.Log("Absolitly Available");
+            Debug.Log(" ");*/
+            //buyButtons[button].UpdateColors(correctAmount[0], correctAmount[1], correctAmount[2]);
+            buyButtons[button].UpdateColors(incorrectAmount[0], incorrectAmount[1], incorrectAmount[2]);
         }
         else
         {
-            buyButtons[button].UpdateColors(incorrectAmount[0], incorrectAmount[1], incorrectAmount[2]);
+            /*Debug.Log(" ");
+            Debug.Log("Which Button: " + button);
+            Debug.Log("Not Available");
+            Debug.Log(" ");*/
+            buyButtons[button].UpdateColors(correctAmount[0], correctAmount[1], correctAmount[2]);
+            //buyButtons[button].UpdateColors(incorrectAmount[0], incorrectAmount[1], incorrectAmount[2]);
         }
     }
 }

@@ -21,7 +21,7 @@ public class CustomButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public class CustomUIEvent : UnityEvent { }
     public CustomUIEvent OnEvent;
 
-    private int whichTransition;
+    private int whichTransition  = 0;
 
     public void UpdateColors(Color startColor, Color enteredColor, Color selectedColor)
     {
@@ -30,22 +30,20 @@ public class CustomButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         this.enteredColor = enteredColor;
         this.downColor = selectedColor;
 
-        if (whichTransition == 0)
+        if(whichTransition == 2 || whichTransition == 1)
         {
-            StartCoroutine(Transition(transform.localScale, this.startColor, 0.1f));
-        }else if (whichTransition == 1)
-        {
-            StartCoroutine(Transition(transform.localScale, this.enteredColor, 0.1f));
+            StartCoroutine(Transition(transform.localScale, enteredColor, 0.25f, 1));
         }
         else
         {
-            StartCoroutine(Transition(transform.localScale, this.downColor, 0.1f));
+            StartCoroutine(Transition(transform.localScale, startColor, 0.25f, 0));
         }
     }
 
 
-    IEnumerator Transition(Vector3 newSize, Color newColor, float transitionTime)
+    IEnumerator Transition(Vector3 newSize, Color newColor, float transitionTime, int newTransition)
     {
+        whichTransition = newTransition;
         float timer = 0;
         Vector3 startSize = transform.localScale;
         Color startColor = buttonBackground.color;
@@ -61,25 +59,25 @@ public class CustomButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        whichTransition = 1;
-        StartCoroutine(Transition(enteredVector, enteredColor, 0.15f));
+        //whichTransition = 1;
+        StartCoroutine(Transition(enteredVector, enteredColor, 0.15f, 1));
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        whichTransition = 0;
-        StartCoroutine(Transition(startVector, startColor, 0.15f));
+        //whichTransition = 0;
+        StartCoroutine(Transition(startVector, startColor, 0.15f, 0));
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        whichTransition = 2;
-        StartCoroutine(Transition(downVector, downColor, 0.3f));
+        //whichTransition = 2;
+        StartCoroutine(Transition(downVector, downColor, 0.25f, 1));
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        whichTransition = 2;
+        //whichTransition = 2;
         //StartCoroutine(Transition(startVector, startColor, 0.02f));
         OnEvent.Invoke();
         Debug.Log("UI Button Clicked");
