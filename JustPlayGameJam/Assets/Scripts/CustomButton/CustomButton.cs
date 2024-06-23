@@ -32,11 +32,11 @@ public class CustomButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
         if(whichTransition == 2 || whichTransition == 1)
         {
-            StartCoroutine(Transition(transform.localScale, enteredColor, 0.2f, 1));
+            StartCoroutine(Transition(transform.localScale, enteredColor, 0.18f, 1));
         }
         else
         {
-            StartCoroutine(Transition(transform.localScale, startColor, 0.2f, 0));
+            StartCoroutine(Transition(transform.localScale, startColor, 0.18f, 0));
         }
     }
 

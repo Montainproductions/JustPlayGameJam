@@ -1585,7 +1585,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4155400610921426132, guid: 9e494d0ae7ead0a47b246bc761ba96ff, type: 3}
       propertyPath: m_text
-      value: Portland Cement
+      value: Steam Hammer
       objectReference: {fileID: 0}
     - target: {fileID: 4155400610921426133, guid: 9e494d0ae7ead0a47b246bc761ba96ff, type: 3}
       propertyPath: m_AnchoredPosition.y
