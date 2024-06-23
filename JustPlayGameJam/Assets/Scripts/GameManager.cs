@@ -146,11 +146,9 @@ public class GameManager : MonoBehaviour
         } else if (1000000 <= playerBankBalance)
         {
 
-            moneylength = Mathf.Floor(Mathf.Log10(playerBankBalance));
+            moneylength = Mathf.Floor(Mathf.Log10(playerBankBalance))/3;
             //Debug.Log("Length of log: " + moneylength);
-            moneylength = moneylength / 3;
 
-            fullTextMoney = playerBankBalance.ToString("F0");
             //Debug.Log("Entire Value In Text: " + fullTextMoney);
 
             CorrectValueSize();
@@ -190,6 +188,7 @@ public class GameManager : MonoBehaviour
 
     public void BalanceSize(int caseSize)
     {
+        fullTextMoney = playerBankBalance.ToString("F0");
         for (int i = 0; i < 4 + caseSize; i++)
         {
             displayedMoney += fullTextMoney[i];

@@ -673,7 +673,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   availabilityBox: {fileID: 2377067690872927743}
   energySource: {fileID: 11400000, guid: 8bfbce02476f78b49be2f656bf375cfb, type: 2}
-  unlockCost: 5000
   unlockCostText: {fileID: 4008560361632922230}
   unlocked: {fileID: 665445244772212996}
   locked: {fileID: 2080607691274752882}
@@ -1192,7 +1191,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6172899060061865573}
         m_TargetAssemblyTypeName: EnergySource_Logic, Assembly-CSharp
-        m_MethodName: UnlockCompany
+        m_MethodName: UnlockEnergySource
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1209,6 +1208,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8185304768038197552}
     m_Modifications:
+    - target: {fileID: 5082278634018083125, guid: 8b2080041db9e6e4db4a26b29fb0c728, type: 3}
+      propertyPath: OnEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6172899060061865573}
+    - target: {fileID: 5082278634018083125, guid: 8b2080041db9e6e4db4a26b29fb0c728, type: 3}
+      propertyPath: OnEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IncreaseEfficencyLvl
+      objectReference: {fileID: 0}
+    - target: {fileID: 5082278634018083125, guid: 8b2080041db9e6e4db4a26b29fb0c728, type: 3}
+      propertyPath: OnEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: EnergySource_Logic, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 5082278634018083126, guid: 8b2080041db9e6e4db4a26b29fb0c728, type: 3}
       propertyPath: m_RootOrder
       value: 1
