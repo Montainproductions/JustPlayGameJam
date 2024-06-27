@@ -19,7 +19,7 @@ public class EnergySource : ScriptableObject
 
     public TypesEnergySource energySource;
 
-    public bool availableSource;
+    public bool availableSource, unlocked;
 
     public float unlockCost;
 

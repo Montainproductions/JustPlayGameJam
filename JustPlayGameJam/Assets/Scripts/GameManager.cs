@@ -14,10 +14,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float tickTimer;
 
-    //All energy sources
-    [SerializeField]
-    private GameObject energySources;
-
     //Players current balance and pollution level
     [SerializeField]
     private float playerBankBalance, currentPollutionLevels;
@@ -28,8 +24,18 @@ public class GameManager : MonoBehaviour
     //List of all the unlocked companies
     List<Company> unlockedCompanies = new List<Company>();
 
+    private bool companyUnlocked;
+
     [SerializeField]
     private Company_Logic[] company_Logic;
+
+    //All energy sources
+    [SerializeField]
+    private EnergySource currentEnergySources;
+
+    private List<EnergySource> unlockedEnergySources = new List<EnergySource>();
+
+    private bool energySourcesUnlocked;
 
     //UI Text for total balance and total pollution
     [SerializeField]
@@ -50,6 +56,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        companyUnlocked = false;
+        energySourcesUnlocked = false;
+
         UpdateValues();
         UpdateButtonColor();
 
@@ -72,7 +81,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Update");
 
-        if (CheckCompaniesUnlocked())
+        if (companyUnlocked)
         {
             playerBankBalance += MonthlyProfit();
 
@@ -97,12 +106,15 @@ public class GameManager : MonoBehaviour
     public void CompanyUnlocked(Company newCompany)
     {
         unlockedCompanies.Add(newCompany);
+        companyUnlocked = true;
     }
 
     //Unlocks new energy source
-    public void EnergySourceUnlocked(GameObject newEnergySource)
+    public void EnergySourceUnlocked(EnergySource newEnergySource)
     {
-        energySources = newEnergySource;
+        currentEnergySources = newEnergySource;
+        unlockedEnergySources.Add(newEnergySource);
+        energySourcesUnlocked = true;
     }
 
     public void EnergySourceDiscovered(GameObject newEnergySource)
@@ -113,13 +125,20 @@ public class GameManager : MonoBehaviour
     //Will restart the buy levels to 0 when the game is restarted.
     public void RestartCompanies()
     {
-        if (CheckCompaniesUnlocked())
+        if (companyUnlocked)
         {
             for (int i = 0; i < unlockedCompanies.Count; i++)
             {
                 unlockedCompanies[i].unlocked = false;
                 unlockedCompanies[i].currentBuyLvl = 0;
                 unlockedCompanies[i].currentEfficencyLvl = 0;
+            }
+        }
+        if (energySourcesUnlocked)
+        {
+            for (int i = 0; i < unlockedEnergySources.Count; i++)
+            {
+                unlockedEnergySources[i].unlocked = false;
             }
         }
     }
@@ -246,16 +265,6 @@ public class GameManager : MonoBehaviour
         {
             return true;
         }
-    }
-
-    //Checks if the company is currently unlocked
-    public bool CheckCompaniesUnlocked()
-    {
-        if (unlockedCompanies.Count > 0)
-        {
-            return true;
-        }
-        return false;
     }
 
     public void UpdateButtonColor()

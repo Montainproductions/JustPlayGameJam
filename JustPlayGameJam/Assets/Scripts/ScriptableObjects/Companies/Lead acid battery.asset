@@ -15,7 +15,7 @@ MonoBehaviour:
   unlocked: 0
   businessName: 6
   unlocksEnrgySource: 0
-  initUnlockCost: 1000000
+  initUnlockCost: 50000000
   initProduction: 3
   initPollution: 0.01
   initPrice: 115
@@ -28,4 +28,4 @@ MonoBehaviour:
   reductionPollution: 0
   currentProductionCost: 0
   currentEfficencyCost: 0
-  companyScaler: 0
+  companyScaler: 1.14

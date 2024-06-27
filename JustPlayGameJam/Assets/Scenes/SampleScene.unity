@@ -897,7 +897,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4155400610921426132, guid: 9e494d0ae7ead0a47b246bc761ba96ff, type: 3}
       propertyPath: m_text
-      value: Portland Cement
+      value: Lead Acid Battery
       objectReference: {fileID: 0}
     - target: {fileID: 4155400610921426133, guid: 9e494d0ae7ead0a47b246bc761ba96ff, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3630,7 +3630,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tickTimer: 1.9
-  energySources: {fileID: 0}
   playerBankBalance: 100
   currentPollutionLevels: 0
   company_Logic:
@@ -3642,6 +3641,7 @@ MonoBehaviour:
   - {fileID: 2058252597}
   - {fileID: 1793800529}
   - {fileID: 2072118086}
+  currentEnergySources: {fileID: 0}
   perMonthText: {fileID: 685800858}
   balanceText: {fileID: 424218530}
   pollutionText: {fileID: 120923844}
