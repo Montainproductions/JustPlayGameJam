@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     private float playerBankBalance, currentPollutionLevels;
 
     private string displayedMoney, fullTextMoney;
-    private float moneylength, reducedBalance;
+    private float moneylength, reducedValue;
 
     //List of all the unlocked companies
     List<Company> unlockedCompanies = new List<Company>();
@@ -41,6 +41,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI perMonthText, balanceText, pollutionText;
 
+    [SerializeField]
+    private TextMeshProUGUI[] textUI;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -59,8 +62,7 @@ public class GameManager : MonoBehaviour
         companyUnlocked = false;
         energySourcesUnlocked = false;
 
-        UpdateValues();
-        UpdateButtonColor();
+        StartCoroutine(UIUpdateTimer());
 
         StartCoroutine(MonthlyTick());
     }
@@ -68,7 +70,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateButtonColor();
+
     }
 
     private void OnDestroy()
@@ -76,10 +78,11 @@ public class GameManager : MonoBehaviour
         RestartCompanies();
     }
 
+    #region AffectingMoneyValues
     //Monthly tick to update all the values.
     IEnumerator MonthlyTick()
     {
-        Debug.Log("Update");
+        //Debug.Log("Update");
 
         if (companyUnlocked)
         {
@@ -93,15 +96,30 @@ public class GameManager : MonoBehaviour
         //Debug.Log("Money Earned: " + moneyIn);
         //Debug.Log("Players Bank: " + playerBankBalance);
 
-        //Update values
-        UpdateValues();
-
         yield return new WaitForSeconds(tickTimer);
 
         StartCoroutine(MonthlyTick());
         yield return null;
     }
 
+    public float MonthlyProfit()
+    {
+        float montlyProfits = 0;
+        for (int i = 0; i < unlockedCompanies.Count; i++)
+        {
+            montlyProfits += unlockedCompanies[i].currentProductionValue * unlockedCompanies[i].initPrice;
+        }
+        return montlyProfits;
+    }
+
+    //Updates the players balance.
+    public void AffectPlayersBalance(float cost)
+    {
+        playerBankBalance += cost;
+    }
+#endregion
+
+    #region CompanyInfo
     //Player buys a new company and is added to the current list
     public void CompanyUnlocked(Company newCompany)
     {
@@ -142,39 +160,66 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+    #endregion CompanyInfo
 
-    public float MonthlyProfit()
+    #region UpdatingTextUI
+    IEnumerator UIUpdateTimer()
     {
-        float montlyProfits = 0;
-        for (int i = 0; i < unlockedCompanies.Count; i++)
+        UpdateValues(balanceText, playerBankBalance);
+        for (int i = 0; i < textUI.Length; i++)
         {
-            montlyProfits += unlockedCompanies[i].currentProductionValue * unlockedCompanies[i].initPrice;
+            float remainder = i % 3;
+            int arrayPosition = (int)Mathf.Floor(i / 3);
+//            Debug.Log("Current text to update: " + i);
+//            Debug.Log("Remainder: " + remainder);
+
+//            Debug.Log(" ");
+
+            if (textUI[i].IsActive() && remainder == 0) 
+            {
+                //Debug.Log("Current text to update: " + i);
+                //Debug.Log("Remainder: " + remainder);
+                UpdateValues(textUI[i], company_Logic[arrayPosition].UnlockCostReturn());
+                //Debug.Log(company_Logic[arrayPosition].UnlockCostReturn());
+            }else if (textUI[i].IsActive() && remainder == 1)
+            {
+                //Debug.Log("Production");
+                UpdateValues(textUI[i], company_Logic[arrayPosition - 1].ProductionCostReturn());
+            }
+            else if(textUI[i].IsActive() && remainder == 2)
+            {
+                //Debug.Log("Efficiency");
+                UpdateValues(textUI[i], company_Logic[arrayPosition - 2].EfficencyCostReturn());
+            }
         }
-        return montlyProfits;
+
+        UpdateButtonColor();
+
+        yield return new WaitForSeconds(0.05f);
+        StartCoroutine(UIUpdateTimer());
+        yield return null;
     }
 
     //Updates current text total values for the players balance and pollutions.
-    public void UpdateValues()
+    public void UpdateValues(TextMeshProUGUI textPresentation, float cost)
     {
-
         //10100000
-        if (1000000 > playerBankBalance)
+        if (1000000 > cost)
         {
-            displayedMoney = $"{ReworkedDecimalPoint(playerBankBalance, 0.01f, 100)}";
-            balanceText.text = displayedMoney;
-        } else if (1000000 <= playerBankBalance)
+            displayedMoney = $"{ReworkedDecimalPoint(cost, 0.01f, 100)}";
+            textPresentation.text = displayedMoney;
+        } else if (1000000 <= cost)
         {
-
-            moneylength = Mathf.Floor(Mathf.Log10(playerBankBalance))/3;
-            //Debug.Log("Length of log: " + moneylength);
+            moneylength = Mathf.Floor(Mathf.Log10(cost));
+            Debug.Log("Length of log: " + moneylength + " ");
 
             //Debug.Log("Entire Value In Text: " + fullTextMoney);
 
-            CorrectValueSize();
+            CorrectValueSize(cost);
 
             string prefex = CorrectPrefex();
 
-            balanceText.text = $"{ReworkedDecimalPoint(reducedBalance, 0.001f)}" + prefex;
+            textPresentation.text = $"{ReworkedDecimalPoint(reducedValue, 0.001f)}" + prefex;
         }
 
         displayedMoney = " ";
@@ -184,35 +229,36 @@ public class GameManager : MonoBehaviour
         pollutionText.text = ReworkedDecimalPoint(currentPollutionLevels, 0.01f, 100).ToString();
     }
 
-    public void CorrectValueSize()
+    public void CorrectValueSize(float cost)
     {
-        //Debug.Log(moneylength%3);
-        float intValue = Mathf.Floor(moneylength);
-        float remainder = moneylength % 3;
-        remainder = remainder - intValue;
-        //Debug.Log("Remainder: " + remainder);
+        //Debug.Log(moneylength/3);
+        moneylength = moneylength / 3;
+        float remainder = moneylength;
+        remainder = remainder - Mathf.Floor(moneylength);
+        Debug.Log("Remainder: " + remainder);
 
         if (remainder <= 0)
         {
-            BalanceSize(0);
-        } else if (0.4f > remainder && remainder > 0.3f)
+            BalanceSize(0, cost);
+        } else if (0.3f < remainder && remainder < 0.4f)
         {
-            BalanceSize(1);
+            //Debug.Log("Hello");
+            BalanceSize(1, cost);
         }
         else
         {
-            BalanceSize(2);
+            BalanceSize(2, cost);
         }
     }
 
-    public void BalanceSize(int caseSize)
+    public void BalanceSize(int caseSize, float cost)
     {
-        fullTextMoney = playerBankBalance.ToString("F0");
+        fullTextMoney = cost.ToString("F0");
         for (int i = 0; i < 4 + caseSize; i++)
         {
             displayedMoney += fullTextMoney[i];
         }
-        reducedBalance = Int32.Parse(displayedMoney);
+        reducedValue = Int32.Parse(displayedMoney);
         //Debug.Log("String: " + displayedMoney);
         //Debug.Log("Float: " + reducedBalance);
 
@@ -246,13 +292,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //Updates the players balance.
-    public void AffectPlayersBalance(float cost)
+    public void UpdateButtonColor()
     {
-        playerBankBalance += cost;
-
-        UpdateValues();
+        for (int i = 0; i < company_Logic.Length; i++)
+        {
+            //Debug.Log("Which Comanpy: " + i);
+            company_Logic[i].ButtonColor();
+        }
     }
+    #endregion UpdatingTextUI
+
 
     public bool ChecksPurcheseAbility(float costOfItem)
     {
@@ -264,15 +313,6 @@ public class GameManager : MonoBehaviour
         else
         {
             return true;
-        }
-    }
-
-    public void UpdateButtonColor()
-    {
-        for (int i = 0; i < company_Logic.Length; i++)
-        {
-            //Debug.Log("Which Comanpy: " + i);
-            company_Logic[i].ButtonColor();
         }
     }
 

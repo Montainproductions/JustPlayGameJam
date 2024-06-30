@@ -212,4 +212,19 @@ public class Company_Logic : MonoBehaviour
             //buyButtons[button].UpdateColors(incorrectAmount[0], incorrectAmount[1], incorrectAmount[2]);
         }
     }
+
+    public float UnlockCostReturn()
+    {
+        return companyData.initUnlockCost;
+    }
+
+    public float ProductionCostReturn()
+    {
+        return companyData.currentProductionCost;
+    }
+
+    public float EfficencyCostReturn() 
+    {
+        return companyData.currentEfficencyCost;
+    }
 }

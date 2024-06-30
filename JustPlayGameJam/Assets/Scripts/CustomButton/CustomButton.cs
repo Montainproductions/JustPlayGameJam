@@ -80,6 +80,6 @@ public class CustomButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         //whichTransition = 2;
         //StartCoroutine(Transition(startVector, startColor, 0.02f));
         OnEvent.Invoke();
-        Debug.Log("UI Button Clicked");
+        //Debug.Log("UI Button Clicked");
     }
 }
