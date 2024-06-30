@@ -168,31 +168,30 @@ public class GameManager : MonoBehaviour
         UpdateValues(balanceText, playerBankBalance);
         for (int i = 0; i < textUI.Length; i++)
         {
-            //0/3
             float remainder = Remainder(i);
             int arrayPos = (int)Mathf.Floor(i/3);
             //Debug.Log("Current text to update: " + i);
-            Debug.Log("Remainder: " + remainder);
+            //Debug.Log("Remainder: " + remainder + " Text Array Pos: " + i + " Company Array Pos: " + arrayPos);
 
-            //            Debug.Log(" ");
+            //Debug.Log(" ");
 
             if (textUI[i].IsActive() && remainder <= 0.3f) 
             {
                 //Debug.Log("Current text to update: " + i);
                 //Debug.Log("Remainder: " + remainder);
-                Debug.Log(i);
+                //Debug.Log(i);
                 UpdateValues(textUI[i], company_Logic[arrayPos].UnlockCostReturn());
                 //Debug.Log(company_Logic[arrayPosition].UnlockCostReturn());
             }
             else if(textUI[i].IsActive() && remainder >= 0.4f)
             {
                 //Debug.Log("Efficiency");
-                UpdateValues(textUI[i], company_Logic[arrayPos - 2].EfficencyCostReturn());
+                UpdateValues(textUI[i], company_Logic[arrayPos].EfficencyCostReturn());
             }
             else if (textUI[i].IsActive())
             {
                 //Debug.Log("Production");
-                UpdateValues(textUI[i], company_Logic[arrayPos - 1].ProductionCostReturn());
+                UpdateValues(textUI[i], company_Logic[arrayPos].ProductionCostReturn());
             }
         }
 
