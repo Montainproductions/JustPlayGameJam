@@ -168,28 +168,31 @@ public class GameManager : MonoBehaviour
         UpdateValues(balanceText, playerBankBalance);
         for (int i = 0; i < textUI.Length; i++)
         {
-            float remainder = i % 3;
-            int arrayPosition = (int)Mathf.Floor(i / 3);
-//            Debug.Log("Current text to update: " + i);
-//            Debug.Log("Remainder: " + remainder);
+            //0/3
+            float remainder = Remainder(i);
+            int arrayPos = (int)Mathf.Floor(i/3);
+            //Debug.Log("Current text to update: " + i);
+            Debug.Log("Remainder: " + remainder);
 
-//            Debug.Log(" ");
+            //            Debug.Log(" ");
 
-            if (textUI[i].IsActive() && remainder == 0) 
+            if (textUI[i].IsActive() && remainder <= 0.3f) 
             {
                 //Debug.Log("Current text to update: " + i);
                 //Debug.Log("Remainder: " + remainder);
-                UpdateValues(textUI[i], company_Logic[arrayPosition].UnlockCostReturn());
+                Debug.Log(i);
+                UpdateValues(textUI[i], company_Logic[arrayPos].UnlockCostReturn());
                 //Debug.Log(company_Logic[arrayPosition].UnlockCostReturn());
-            }else if (textUI[i].IsActive() && remainder == 1)
-            {
-                //Debug.Log("Production");
-                UpdateValues(textUI[i], company_Logic[arrayPosition - 1].ProductionCostReturn());
             }
-            else if(textUI[i].IsActive() && remainder == 2)
+            else if(textUI[i].IsActive() && remainder >= 0.4f)
             {
                 //Debug.Log("Efficiency");
-                UpdateValues(textUI[i], company_Logic[arrayPosition - 2].EfficencyCostReturn());
+                UpdateValues(textUI[i], company_Logic[arrayPos - 2].EfficencyCostReturn());
+            }
+            else if (textUI[i].IsActive())
+            {
+                //Debug.Log("Production");
+                UpdateValues(textUI[i], company_Logic[arrayPos - 1].ProductionCostReturn());
             }
         }
 
@@ -211,7 +214,7 @@ public class GameManager : MonoBehaviour
         } else if (1000000 <= cost)
         {
             moneylength = Mathf.Floor(Mathf.Log10(cost));
-            Debug.Log("Length of log: " + moneylength + " ");
+            //Debug.Log("Length of log: " + moneylength + " ");
 
             //Debug.Log("Entire Value In Text: " + fullTextMoney);
 
@@ -235,7 +238,7 @@ public class GameManager : MonoBehaviour
         moneylength = moneylength / 3;
         float remainder = moneylength;
         remainder = remainder - Mathf.Floor(moneylength);
-        Debug.Log("Remainder: " + remainder);
+        //Debug.Log("Remainder: " + remainder);
 
         if (remainder <= 0)
         {
@@ -323,6 +326,14 @@ public class GameManager : MonoBehaviour
 
         float newVal = Mathf.Round(value * roundedNumb) * decimalPoint;
         return newVal;
+    }
+
+    public float Remainder(float mainVal)
+    {
+        mainVal = mainVal / 3;
+        float remainder = mainVal;
+        remainder = remainder - Mathf.Floor(mainVal);
+        return remainder;
     }
 
     //Returns the current player balance

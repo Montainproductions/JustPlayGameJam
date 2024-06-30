@@ -3843,7 +3843,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tickTimer: 1.9
-  playerBankBalance: 10000000
+  playerBankBalance: 100
   currentPollutionLevels: 0
   company_Logic:
   - {fileID: 1227561448}
