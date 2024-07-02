@@ -3442,7 +3442,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4155400610921426132, guid: 9e494d0ae7ead0a47b246bc761ba96ff, type: 3}
       propertyPath: m_text
-      value: Portland Cement
+      value: Lawn Mower
       objectReference: {fileID: 0}
     - target: {fileID: 4155400610921426133, guid: 9e494d0ae7ead0a47b246bc761ba96ff, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3858,7 +3858,7 @@ MonoBehaviour:
   perMonthText: {fileID: 685800858}
   balanceText: {fileID: 424218530}
   pollutionText: {fileID: 120923844}
-  textUI:
+  textUICompanyButtons:
   - {fileID: 130771072}
   - {fileID: 1746880461}
   - {fileID: 2114499719}
@@ -3883,6 +3883,7 @@ MonoBehaviour:
   - {fileID: 1239042401}
   - {fileID: 718621641}
   - {fileID: 222971490}
+  textUIenergySourceButtons: []
 --- !u!114 &1833877070 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1020380651339904230, guid: 9e494d0ae7ead0a47b246bc761ba96ff, type: 3}

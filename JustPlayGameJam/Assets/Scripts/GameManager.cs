@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
     private TextMeshProUGUI perMonthText, balanceText, pollutionText;
 
     [SerializeField]
-    private TextMeshProUGUI[] textUI;
+    private TextMeshProUGUI[] textUICompanyButtons, textUIenergySourceButtons;
 
     private void Awake()
     {
@@ -166,7 +166,9 @@ public class GameManager : MonoBehaviour
     IEnumerator UIUpdateTimer()
     {
         UpdateValues(balanceText, playerBankBalance);
-        for (int i = 0; i < textUI.Length; i++)
+        UpdateValues(perMonthText, MonthlyProfit());
+        UpdateValues(pollutionText, currentPollutionLevels);
+        for (int i = 0; i < textUICompanyButtons.Length; i++)
         {
             float remainder = Remainder(i);
             int arrayPos = (int)Mathf.Floor(i/3);
@@ -175,29 +177,29 @@ public class GameManager : MonoBehaviour
 
             //Debug.Log(" ");
 
-            if (textUI[i].IsActive() && remainder <= 0.3f) 
+            if (textUICompanyButtons[i].IsActive() && remainder <= 0.3f) 
             {
                 //Debug.Log("Current text to update: " + i);
                 //Debug.Log("Remainder: " + remainder);
                 //Debug.Log(i);
-                UpdateValues(textUI[i], company_Logic[arrayPos].UnlockCostReturn());
+                UpdateValues(textUICompanyButtons[i], company_Logic[arrayPos].UnlockCostReturn());
                 //Debug.Log(company_Logic[arrayPosition].UnlockCostReturn());
             }
-            else if(textUI[i].IsActive() && remainder >= 0.4f)
+            else if(textUICompanyButtons[i].IsActive() && remainder >= 0.4f)
             {
                 //Debug.Log("Efficiency");
-                UpdateValues(textUI[i], company_Logic[arrayPos].EfficencyCostReturn());
+                UpdateValues(textUICompanyButtons[i], company_Logic[arrayPos].EfficencyCostReturn());
             }
-            else if (textUI[i].IsActive())
+            else if (textUICompanyButtons[i].IsActive())
             {
                 //Debug.Log("Production");
-                UpdateValues(textUI[i], company_Logic[arrayPos].ProductionCostReturn());
+                UpdateValues(textUICompanyButtons[i], company_Logic[arrayPos].ProductionCostReturn());
             }
         }
 
         UpdateButtonColor();
 
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(0.075f);
         StartCoroutine(UIUpdateTimer());
         yield return null;
     }
@@ -226,9 +228,9 @@ public class GameManager : MonoBehaviour
 
         displayedMoney = " ";
 
-        perMonthText.text = ReworkedDecimalPoint(MonthlyProfit(), 0.01f, 100).ToString();
+        //perMonthText.text = ReworkedDecimalPoint(MonthlyProfit(), 0.01f, 100).ToString();
         //balanceText.text = TwoDecimalPoint(playerBankBalance).ToString();
-        pollutionText.text = ReworkedDecimalPoint(currentPollutionLevels, 0.01f, 100).ToString();
+        //pollutionText.text = ReworkedDecimalPoint(currentPollutionLevels, 0.01f, 100).ToString();
     }
 
     public void CorrectValueSize(float cost)
