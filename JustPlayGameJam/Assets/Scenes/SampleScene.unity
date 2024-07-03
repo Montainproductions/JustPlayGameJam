@@ -3246,7 +3246,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4155400610921426132, guid: 9e494d0ae7ead0a47b246bc761ba96ff, type: 3}
       propertyPath: m_text
-      value: Portland Cement
+      value: Gas Stove
       objectReference: {fileID: 0}
     - target: {fileID: 4155400610921426133, guid: 9e494d0ae7ead0a47b246bc761ba96ff, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3263,7 +3263,7 @@ PrefabInstance:
     - target: {fileID: 4155400611028460792, guid: 9e494d0ae7ead0a47b246bc761ba96ff, type: 3}
       propertyPath: companyData
       value: 
-      objectReference: {fileID: 11400000, guid: 0e75fb96978ba0b43bc7b190313b356d, type: 2}
+      objectReference: {fileID: 11400000, guid: a84aee21473a30a44a86dff43ce0f9cc, type: 2}
     - target: {fileID: 4155400611028460793, guid: 9e494d0ae7ead0a47b246bc761ba96ff, type: 3}
       propertyPath: m_RootOrder
       value: 7

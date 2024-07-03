@@ -20,7 +20,7 @@ MonoBehaviour:
   initPollution: 0.03
   initPrice: 710
   initBuyCost: 27500
-  initEfficencyCost: 40000
+  initEfficencyCost: 50000
   currentBuyLvl: 0
   currentEfficencyLvl: 0
   currentProductionValue: 1012.56

@@ -20,12 +20,12 @@ MonoBehaviour:
   initPollution: 0.02
   initPrice: 3
   initBuyCost: 280
-  initEfficencyCost: 800
+  initEfficencyCost: 920
   currentBuyLvl: 0
   currentEfficencyLvl: 0
-  currentProductionValue: 7135.271
-  currentPollutionValue: -13.773554
+  currentProductionValue: 1532.1289
+  currentPollutionValue: 20.534058
   reductionPollution: 0
-  currentProductionCost: 314883.5
-  currentEfficencyCost: 308887.62
+  currentProductionCost: 3755.766
+  currentEfficencyCost: 932
   companyScaler: 1.165
