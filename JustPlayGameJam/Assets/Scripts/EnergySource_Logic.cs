@@ -15,7 +15,7 @@ public class EnergySource_Logic : MonoBehaviour
 
     //Text showing unlock clost
     [SerializeField]
-    private TextMeshProUGUI unlockCostText;
+    private TextMeshProUGUI unlockCostText, upgradeCostText;
 
     //Unlocked and locked UI
     [SerializeField]
@@ -63,9 +63,11 @@ public class EnergySource_Logic : MonoBehaviour
     //Increases efficiency of the energy source
     public void IncreaseEfficencyLvl()
     {
-        if (energySource.enrgySourceEff < energySource.maxEff)
+        if (energySource.currentEnrgySourceEff < energySource.maxEff)
         {
-            energySource.enrgySourceEff += 0.01f;
+            energySource.currentEnrgySourceEff += 0.01f;
+            energySource.currentEffCost = energySource.initEffCost * Mathf.Pow(energySource.energySourceScaler, energySource.currentEffLvl);
+            //upgradeCostText.text;
         }
     }
 

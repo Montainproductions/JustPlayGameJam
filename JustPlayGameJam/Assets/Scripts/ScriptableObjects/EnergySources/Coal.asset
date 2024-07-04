@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Coal
   m_EditorClassIdentifier: 
   energySource: 1
-  availableSource: 0
+  availableSource: 1
   unlocked: 0
   unlockCost: 5555555
   enrgySourceEff: 1.24

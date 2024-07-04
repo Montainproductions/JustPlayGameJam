@@ -23,5 +23,13 @@ public class EnergySource : ScriptableObject
 
     public float unlockCost;
 
-    public float enrgySourceEff, startingEff, maxEff, enrgySourcePollution;
+    public float initEffCost;
+
+    public float currentEffCost;
+
+    public float currentEnrgySourceEff, startingEff, maxEff, currentEffLvl;
+
+    public float enrgySourcePollution;
+
+    public float energySourceScaler;
 }
