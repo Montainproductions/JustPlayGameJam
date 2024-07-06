@@ -37,6 +37,9 @@ public class GameManager : MonoBehaviour
 
     private bool energySourcesUnlocked;
 
+    [SerializeField]
+    private EnergySource_Logic[] energySource_Logic;
+
     //UI Text for total balance and total pollution
     [SerializeField]
     private TextMeshProUGUI perMonthText, balanceText, pollutionText;
@@ -170,7 +173,7 @@ public class GameManager : MonoBehaviour
         UpdateValues(pollutionText, currentPollutionLevels);
         for (int i = 0; i < textUICompanyButtons.Length; i++)
         {
-            float remainder = Remainder(i);
+            float remainder = Remainder(i,3);
             int arrayPos = (int)Mathf.Floor(i/3);
             //Debug.Log("Current text to update: " + i);
             //Debug.Log("Remainder: " + remainder + " Text Array Pos: " + i + " Company Array Pos: " + arrayPos);
@@ -194,6 +197,19 @@ public class GameManager : MonoBehaviour
             {
                 //Debug.Log("Production");
                 UpdateValues(textUICompanyButtons[i], company_Logic[arrayPos].ProductionCostReturn());
+            }
+        }
+
+        for (int i = 0; i < textUIenergySourceButtons.Length; i++)
+        {
+            float remainder = Remainder(i, 2);
+            int arrayPos = (int)Mathf.Floor(i / 2);
+            if (textUIenergySourceButtons[i].IsActive() && remainder == 0)
+            {
+                UpdateValues(textUIenergySourceButtons[i], energySource_Logic[arrayPos].UnlockCostReturn());
+            }else if (textUIenergySourceButtons[i].IsActive())
+            {
+                UpdateValues(textUIenergySourceButtons[i], energySource_Logic[arrayPos].UpgradeCostReturn());
             }
         }
 
@@ -329,9 +345,9 @@ public class GameManager : MonoBehaviour
         return newVal;
     }
 
-    public float Remainder(float mainVal)
+    public float Remainder(float mainVal, int baseValue)
     {
-        mainVal = mainVal / 3;
+        mainVal = mainVal / baseValue;
         float remainder = mainVal;
         remainder = remainder - Mathf.Floor(mainVal);
         return remainder;

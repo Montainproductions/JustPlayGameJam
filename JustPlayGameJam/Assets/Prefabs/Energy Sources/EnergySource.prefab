@@ -1183,8 +1183,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonBackground: {fileID: 7062724671387827876}
   startVector: {x: 1, y: 1, z: 1}
-  enteredVector: {x: 1.05, y: 1.05, z: 1.05}
-  downVector: {x: 1.1, y: 1.1, z: 1.1}
+  enteredVector: {x: 1, y: 1, z: 1}
+  downVector: {x: 1, y: 1, z: 1}
   startColor: {r: 0.7725491, g: 0.46274513, b: 0.46274513, a: 0}
   enteredColor: {r: 0.7725491, g: 0.46274513, b: 0.46274513, a: 0.2509804}
   downColor: {r: 0.77254903, g: 0.4627451, b: 0.4627451, a: 0.5019608}

@@ -13,5 +13,14 @@ MonoBehaviour:
   m_Name: Gas
   m_EditorClassIdentifier: 
   energySource: 2
-  enrgySourceEff: 1.37
+  availableSource: 0
+  unlocked: 0
+  unlockCost: 300000000
+  initEffCost: 0
+  currentEffCost: 0
+  currentEnrgySourceEff: 0
+  startingEff: 0
+  maxEff: 0
+  currentEffLvl: 0
   enrgySourcePollution: 0.29
+  energySourceScaler: 0

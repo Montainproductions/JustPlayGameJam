@@ -65,9 +65,9 @@ public class EnergySource_Logic : MonoBehaviour
     {
         if (energySource.currentEnrgySourceEff < energySource.maxEff)
         {
-            energySource.currentEnrgySourceEff += 0.01f;
+            energySource.currentEffLvl++;
+            energySource.currentEnrgySourceEff += 0.02f;
             energySource.currentEffCost = energySource.initEffCost * Mathf.Pow(energySource.energySourceScaler, energySource.currentEffLvl);
-            //upgradeCostText.text;
         }
     }
 
@@ -75,5 +75,15 @@ public class EnergySource_Logic : MonoBehaviour
     public void EnergySourceAvailability(){
         availabilityBox.SetActive(false);
         energySource.availableSource = true;
+    }
+
+    public float UnlockCostReturn()
+    {
+        return energySource.unlockCost;
+    }
+
+    public float UpgradeCostReturn()
+    {
+        return energySource.currentEffCost;
     }
 }
