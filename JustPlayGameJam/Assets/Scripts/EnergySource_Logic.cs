@@ -21,6 +21,12 @@ public class EnergySource_Logic : MonoBehaviour
     [SerializeField]
     private GameObject unlocked, locked;
 
+    [SerializeField]
+    private CustomButton[] buyButtons;
+
+    [SerializeField]
+    private Color[] correctAmount, incorrectAmount;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -75,7 +81,41 @@ public class EnergySource_Logic : MonoBehaviour
     public void EnergySourceAvailability(){
         availabilityBox.SetActive(false);
         energySource.availableSource = true;
+        energySource.currentEnrgySourceEff = energySource.startingEff;
     }
+
+    #region ColorUpdating
+    public void ButtonColor()
+    {
+        if (energySource.unlocked)
+        {
+            CheckPrice(1, energySource.currentEffCost);
+        }
+        else
+        {
+            CheckPrice(0, energySource.unlockCost);
+        }
+    }
+
+    public void CheckPrice(int button, float costVal)
+    {
+        float leftOver = GameManager.Instance.GetBalance() - costVal;
+        if (leftOver < 0)
+        {
+            buyButtons[button].UpdateColors(incorrectAmount[0], incorrectAmount[1], incorrectAmount[2]);
+        }
+        else
+        {
+            buyButtons[button].UpdateColors(correctAmount[0], correctAmount[1], correctAmount[2]);
+        }
+    }
+
+    public void ReciveColors(Color[] correctAmount, Color[] incorrectAmount)
+    {
+        this.correctAmount = correctAmount;
+        this.incorrectAmount = incorrectAmount;
+    }
+    #endregion
 
     public float UnlockCostReturn()
     {

@@ -34,7 +34,6 @@ public class Company_Logic : MonoBehaviour
     [SerializeField]
     private CustomButton[] buyButtons;
 
-    [SerializeField]
     private Color[] correctAmount, incorrectAmount;
 
     public void Start()
@@ -211,6 +210,12 @@ public class Company_Logic : MonoBehaviour
             buyButtons[button].UpdateColors(correctAmount[0], correctAmount[1], correctAmount[2]);
             //buyButtons[button].UpdateColors(incorrectAmount[0], incorrectAmount[1], incorrectAmount[2]);
         }
+    }
+
+    public void ReciveColors(Color[] correctAmount, Color[] incorrectAmount)
+    {
+        this.correctAmount = correctAmount;
+        this.incorrectAmount = incorrectAmount;
     }
 
     public float UnlockCostReturn()

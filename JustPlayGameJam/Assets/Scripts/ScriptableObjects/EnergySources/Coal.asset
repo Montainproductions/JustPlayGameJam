@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Coal
   m_EditorClassIdentifier: 
   energySource: 1
-  availableSource: 0
+  availableSource: 1
   unlocked: 0
   unlockCost: 5555555
   initEffCost: 800000
-  currentEffCost: 0
-  currentEnrgySourceEff: 0
+  currentEffCost: 1314425.5
+  currentEnrgySourceEff: 1.24
   startingEff: 1.24
   maxEff: 1.48
-  currentEffLvl: 0
+  currentEffLvl: 3
   enrgySourcePollution: 0.35
   energySourceScaler: 1.18

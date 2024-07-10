@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
     private string displayedMoney, fullTextMoney;
     private float moneylength, reducedValue;
 
+    [SerializeField]
+    private Color[] correctAmount, incorrectAmount;
+
     //List of all the unlocked companies
     List<Company> unlockedCompanies = new List<Company>();
 
@@ -64,6 +67,8 @@ public class GameManager : MonoBehaviour
     {
         companyUnlocked = false;
         energySourcesUnlocked = false;
+
+        UpdateColorValues();
 
         StartCoroutine(UIUpdateTimer());
 
@@ -309,6 +314,15 @@ public class GameManager : MonoBehaviour
 
             default:
                 return "";
+        }
+    }
+
+    public void UpdateColorValues()
+    {
+        for (int i = 0; i < company_Logic.Length; i++)
+        {
+            //Debug.Log("Which Comanpy: " + i);
+            company_Logic[i].ReciveColors(correctAmount, incorrectAmount);
         }
     }
 
