@@ -4,7 +4,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
 using System;
-using static EnergySource;
 
 public class GameManager : MonoBehaviour
 {
@@ -50,6 +49,13 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI[] textUICompanyButtons, textUIenergySourceButtons;
 
+    //Audio
+    [SerializeField]
+    private AudioClip[] musicClips;
+
+    [SerializeField]
+    private AudioSource audioSource;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -68,6 +74,8 @@ public class GameManager : MonoBehaviour
         companyUnlocked = false;
         energySourcesUnlocked = false;
 
+        StartCoroutine(PlayMusic());
+
         UpdateColorValues();
 
         StartCoroutine(UIUpdateTimer());
@@ -78,7 +86,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        StartCoroutine(PlayMusic());
     }
 
     private void OnDestroy()
@@ -365,6 +373,17 @@ public class GameManager : MonoBehaviour
         float remainder = mainVal;
         remainder = remainder - Mathf.Floor(mainVal);
         return remainder;
+    }
+
+    IEnumerator PlayMusic()
+    {
+        if (!audioSource.isPlaying) 
+        {
+            audioSource.clip = musicClips[UnityEngine.Random.Range(0, musicClips.Length)];
+            audioSource.Play();
+        }
+
+        yield return null;
     }
 
     //Returns the current player balance
