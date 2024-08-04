@@ -24,7 +24,6 @@ public class EnergySource_Logic : MonoBehaviour
     [SerializeField]
     private CustomButton[] buyButtons;
 
-    [SerializeField]
     private Color[] correctAmount, incorrectAmount;
 
     // Start is called before the first frame update
@@ -47,6 +46,9 @@ public class EnergySource_Logic : MonoBehaviour
             float balanceLeft = GameManager.Instance.GetBalance() - energySource.unlockCost;
             if (balanceLeft >= 0)
             {
+                energySource.unlocked = true;
+                GameManager.Instance.EnergySourceUnlocked(energySource);
+
                 //Updates players balance
                 GameManager.Instance.AffectPlayersBalance(-energySource.unlockCost);
                 
@@ -115,6 +117,7 @@ public class EnergySource_Logic : MonoBehaviour
         this.correctAmount = correctAmount;
         this.incorrectAmount = incorrectAmount;
     }
+
     #endregion
 
     public float UnlockCostReturn()

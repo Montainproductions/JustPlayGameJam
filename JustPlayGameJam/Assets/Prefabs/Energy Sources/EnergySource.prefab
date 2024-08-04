@@ -677,6 +677,11 @@ MonoBehaviour:
   upgradeCostText: {fileID: 357288051733053172}
   unlocked: {fileID: 665445244772212996}
   locked: {fileID: 2080607691274752882}
+  buyButtons:
+  - {fileID: 7062724671438039470}
+  - {fileID: 6172899059464333961}
+  correctAmount: []
+  incorrectAmount: []
 --- !u!1 &6172899060071503786
 GameObject:
   m_ObjectHideFlags: 0
@@ -1440,6 +1445,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6172899059464333961 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5082278634018083125, guid: 8b2080041db9e6e4db4a26b29fb0c728, type: 3}
+  m_PrefabInstance: {fileID: 1381878861117160380}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7279edb698551dd4799f6b4960d0d689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &6172899059464333962 stripped

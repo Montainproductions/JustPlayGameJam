@@ -3783,7 +3783,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tickTimer: 1.9
-  playerBankBalance: 100
+  playerBankBalance: 50000000
   currentPollutionLevels: 0
   correctAmount:
   - {r: 0.14711636, g: 0.8962264, b: 0.36249346, a: 0}

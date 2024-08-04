@@ -170,9 +170,12 @@ public class GameManager : MonoBehaviour
         }
         if (energySourcesUnlocked)
         {
+            Debug.Log(energySourcesUnlocked);
             for (int i = 0; i < unlockedEnergySources.Count; i++)
             {
+                unlockedEnergySources[i].availableSource = false;
                 unlockedEnergySources[i].unlocked = false;
+                unlockedEnergySources[i].currentEffLvl = 0;
             }
         }
     }
@@ -332,6 +335,11 @@ public class GameManager : MonoBehaviour
             //Debug.Log("Which Comanpy: " + i);
             company_Logic[i].ReciveColors(correctAmount, incorrectAmount);
         }
+
+        for (int i = 0; i < energySource_Logic.Length; i++)
+        {
+            energySource_Logic[i].ReciveColors(correctAmount, incorrectAmount);
+        }
     }
 
     public void UpdateButtonColor()
@@ -340,6 +348,11 @@ public class GameManager : MonoBehaviour
         {
             //Debug.Log("Which Comanpy: " + i);
             company_Logic[i].ButtonColor();
+        }
+
+        for (int i = 0; i < energySource_Logic.Length; i++)
+        {
+            energySource_Logic[i].ButtonColor();
         }
     }
     #endregion UpdatingTextUI
