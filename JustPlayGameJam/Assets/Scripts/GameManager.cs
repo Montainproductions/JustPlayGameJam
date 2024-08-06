@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
 
     //UI Text for total balance and total pollution
     [SerializeField]
-    private TextMeshProUGUI perMonthText, balanceText, pollutionText;
+    private TextMeshProUGUI perMonthProfitText, perMonthPollutionText, balanceText, pollutionText;
 
     [SerializeField]
     private TextMeshProUGUI[] textUICompanyButtons, textUIenergySourceButtons;
@@ -128,6 +128,16 @@ public class GameManager : MonoBehaviour
         return montlyProfits;
     }
 
+    public float MonthlyPollution()
+    {
+        float montlyPollution = 0;
+        for (int i = 0; i < unlockedCompanies.Count; i++)
+        {
+            montlyPollution += unlockedCompanies[i].currentPollutionValue;
+        }
+        return montlyPollution;
+    }
+
     //Updates the players balance.
     public void AffectPlayersBalance(float cost)
     {
@@ -170,7 +180,6 @@ public class GameManager : MonoBehaviour
         }
         if (energySourcesUnlocked)
         {
-            Debug.Log(energySourcesUnlocked);
             for (int i = 0; i < unlockedEnergySources.Count; i++)
             {
                 unlockedEnergySources[i].availableSource = false;
@@ -185,8 +194,9 @@ public class GameManager : MonoBehaviour
     IEnumerator UIUpdateTimer()
     {
         UpdateValues(balanceText, playerBankBalance);
-        UpdateValues(perMonthText, MonthlyProfit());
+        UpdateValues(perMonthProfitText, MonthlyProfit());
         UpdateValues(pollutionText, currentPollutionLevels);
+        UpdateValues(perMonthPollutionText, MonthlyPollution());
         for (int i = 0; i < textUICompanyButtons.Length; i++)
         {
             float remainder = Remainder(i,3);

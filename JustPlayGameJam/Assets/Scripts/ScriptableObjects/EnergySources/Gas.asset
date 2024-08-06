@@ -15,12 +15,13 @@ MonoBehaviour:
   energySource: 2
   availableSource: 0
   unlocked: 0
-  unlockCost: 300000000
-  initEffCost: 0
+  unlockCost: 200000000
+  initEffCost: 150000000
   currentEffCost: 0
   currentEnrgySourceEff: 0
-  startingEff: 0
-  maxEff: 0
+  currentEnrgySourceEffScaled: 0
+  startingEff: 0.56
+  maxEff: 0.38
   currentEffLvl: 0
   enrgySourcePollution: 0.29
-  energySourceScaler: 0
+  energySourceScaler: 1.31

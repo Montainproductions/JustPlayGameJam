@@ -7,7 +7,7 @@ using UnityEngine;
 public class EnergySource_Logic : MonoBehaviour
 {
     [SerializeField]
-    private GameObject availabilityBox;
+    private GameObject availabilityBox, maxedUpgrade;
 
     //Current Energy Source
     [SerializeField]
@@ -34,6 +34,7 @@ public class EnergySource_Logic : MonoBehaviour
     void Start()
     {
         availabilityBox.SetActive(true);
+        maxedUpgrade.SetActive(false);
         energySource.availableSource = false;
 
         unlockCostText.text = energySource.unlockCost.ToString();
@@ -48,15 +49,10 @@ public class EnergySource_Logic : MonoBehaviour
     {
         if (energySource.availableSource)
         {
-            //Checks if the player has enough money
-            float balanceLeft = GameManager.Instance.GetBalance() - energySource.unlockCost;
-            if (balanceLeft >= 0)
+            if (GameManager.Instance.ChecksPurcheseAbility(energySource.unlockCost))
             {
                 energySource.unlocked = true;
                 GameManager.Instance.EnergySourceUnlocked(energySource);
-
-                //Updates players balance
-                GameManager.Instance.AffectPlayersBalance(-energySource.unlockCost);
                 
                 //Updates UI
                 locked.SetActive(false);
@@ -65,7 +61,7 @@ public class EnergySource_Logic : MonoBehaviour
                 //Update current energy source
                 //GameManager.Instance.EnergySourceUnlocked(energySource);
 
-                IncreaseEfficencyLvl();
+                EffCalculation(energySource.unlockCost);
             }
             else
             {
@@ -77,15 +73,28 @@ public class EnergySource_Logic : MonoBehaviour
     //Increases efficiency of the energy source
     public void IncreaseEfficencyLvl()
     {
-        if (energySource.currentEnrgySourceEff > energySource.maxEff)
+        if (energySource.currentEnrgySourceEff > energySource.maxEff && GameManager.Instance.ChecksPurcheseAbility(energySource.currentEffCost))
         {
-            GameManager.Instance.RecalculateProduction();
-            energySource.currentEffLvl++;
-            energySource.currentEnrgySourceEff -= 0.02f;
-            energySource.currentEnrgySourceEffScaled = 1 + (1 - energySource.currentEnrgySourceEff);
-            energySource.currentEffCost = energySource.initEffCost * Mathf.Pow(energySource.energySourceScaler, energySource.currentEffLvl);
-            perMonthVals[0].text = energySource.currentEnrgySourceEffScaled.ToString();
+            EffCalculation(energySource.currentEffCost);
         }
+        else
+        {
+            maxedUpgrade.SetActive(true);
+        }
+    }
+
+    public void EffCalculation(float value)
+    {
+        GameManager.Instance.AffectPlayersBalance(-value);
+
+        energySource.currentEffLvl++;
+        energySource.currentEnrgySourceEff -= 0.02f;
+        energySource.currentEnrgySourceEffScaled = 1 + (1 - energySource.currentEnrgySourceEff);
+        energySource.currentEffCost = energySource.initEffCost * Mathf.Pow(energySource.energySourceScaler, energySource.currentEffLvl);
+
+        GameManager.Instance.RecalculateProduction();
+
+        perMonthVals[0].text = energySource.currentEnrgySourceEffScaled.ToString();
     }
 
     //
