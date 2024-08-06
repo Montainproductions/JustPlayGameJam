@@ -18,9 +18,11 @@ MonoBehaviour:
   unlockCost: 5555555
   initEffCost: 800000
   currentEffCost: 6879484
-  currentEnrgySourceEff: 1.4999998
-  startingEff: 1.24
-  maxEff: 1.48
+  currentEnrgySourceEff: 0.62000024
+  startingEff: 0.88
+  startEffScaled: 1.12
+  maxEff: 0.64
+  maxEffScaled: 1.36
   currentEffLvl: 0
   enrgySourcePollution: 0.35
-  energySourceScaler: 1.18
+  energySourceScaler: 1.23

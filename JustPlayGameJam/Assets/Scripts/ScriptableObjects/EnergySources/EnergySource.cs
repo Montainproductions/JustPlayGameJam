@@ -27,7 +27,7 @@ public class EnergySource : ScriptableObject
 
     public float currentEffCost;
 
-    public float currentEnrgySourceEff, startingEff, maxEff, currentEffLvl;
+    public float currentEnrgySourceEff, currentEnrgySourceEffScaled, startingEff, maxEff, currentEffLvl;
 
     public float enrgySourcePollution;
 

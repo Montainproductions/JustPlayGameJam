@@ -24,6 +24,10 @@ public class EnergySource_Logic : MonoBehaviour
     [SerializeField]
     private CustomButton[] buyButtons;
 
+    //Texts to show current production.
+    [SerializeField]
+    private TextMeshProUGUI[] perMonthVals;
+
     private Color[] correctAmount, incorrectAmount;
 
     // Start is called before the first frame update
@@ -35,6 +39,8 @@ public class EnergySource_Logic : MonoBehaviour
         unlockCostText.text = energySource.unlockCost.ToString();
         locked.SetActive(true);
         unlocked.SetActive(false);
+
+        perMonthVals[1].text = energySource.enrgySourcePollution.ToString();
     }
 
     //Unlock Energy Source
@@ -71,11 +77,14 @@ public class EnergySource_Logic : MonoBehaviour
     //Increases efficiency of the energy source
     public void IncreaseEfficencyLvl()
     {
-        if (energySource.currentEnrgySourceEff < energySource.maxEff)
+        if (energySource.currentEnrgySourceEff > energySource.maxEff)
         {
+            GameManager.Instance.RecalculateProduction();
             energySource.currentEffLvl++;
-            energySource.currentEnrgySourceEff += 0.02f;
+            energySource.currentEnrgySourceEff -= 0.02f;
+            energySource.currentEnrgySourceEffScaled = 1 + (1 - energySource.currentEnrgySourceEff);
             energySource.currentEffCost = energySource.initEffCost * Mathf.Pow(energySource.energySourceScaler, energySource.currentEffLvl);
+            perMonthVals[0].text = energySource.currentEnrgySourceEffScaled.ToString();
         }
     }
 

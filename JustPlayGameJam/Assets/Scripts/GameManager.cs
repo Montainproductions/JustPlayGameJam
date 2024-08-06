@@ -388,6 +388,14 @@ public class GameManager : MonoBehaviour
         return remainder;
     }
 
+    public void RecalculateProduction()
+    {
+        for (int i = 0; i < company_Logic.Length; i++)
+        {
+            company_Logic[i].CurrentProductionCalculation();
+        }
+    }
+
     IEnumerator PlayMusic()
     {
         if (!audioSource.isPlaying) 
@@ -405,8 +413,12 @@ public class GameManager : MonoBehaviour
         return playerBankBalance;
     }
 
-    public float GetEnergySource()
+    public float GetEnergySourceEff()
     {
+        if (currentEnergySources)
+        {
+            return currentEnergySources.currentEnrgySourceEff;
+        }
         return 1;
     }
 }

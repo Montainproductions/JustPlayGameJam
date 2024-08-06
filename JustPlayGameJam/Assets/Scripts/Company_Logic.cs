@@ -129,7 +129,7 @@ public class Company_Logic : MonoBehaviour
     //Calculated the amount produced per month of the item.
     public void CurrentProductionCalculation()
     {
-        companyData.currentProductionValue = companyData.initProduction * ((companyData.currentBuyLvl * equationMultipliers.increaseBuyValue) + (companyData.currentEfficencyLvl * equationMultipliers.increaseEffValue) / GameManager.Instance.GetEnergySource());
+        companyData.currentProductionValue = companyData.initProduction * (((companyData.currentBuyLvl * equationMultipliers.increaseBuyValue) + (companyData.currentEfficencyLvl * equationMultipliers.increaseEffValue)) / GameManager.Instance.GetEnergySourceEff());
         //Debug.Log(companyData.currentProductionValue);
 
         //Updated pollution produced per month.
