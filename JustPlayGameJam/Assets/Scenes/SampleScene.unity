@@ -4263,7 +4263,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newsTextList: []
-  baseNewsText: []
+  baseNewsText:
+  - World not to hot, not to cold!
+  - People enjoying seeing the sun.
+  - Low levels of astma detected around the world.
+  - No companies trying to ruin the world.
+  - Companies making only the products people need.
+  - People being paid fair wages and not being laid off.
+  - People enjoying seeing the sun.
+  - People enjoying seeing the sun.
+  - People enjoying seeing the sun.
+  - People enjoying seeing the sun.
   corigatedIronNewsText: []
   matchesNewsText: []
   portlandCementNewsText: []
