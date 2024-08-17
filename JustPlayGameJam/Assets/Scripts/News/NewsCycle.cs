@@ -13,7 +13,7 @@ public class NewsCycle : MonoBehaviour
     private List<string> newsTextList;
 
     [SerializeField]
-    private List<string> baseNewsText, corigatedIronNewsText, matchesNewsText, portlandCementNewsText, electricMotorNewsText, steamHammerNewsText, leadAcidBatteryNewsText, lawnMowerNewsText, gasStoveNewsText;
+    private List<string> baseNewsText, goodNewsTextPart1, badNewsTextPart1, goodNewsTextPart2, badNewsTextPart2, boughtNewsText;
 
     [SerializeField]
     private TextMeshProUGUI newsText;
@@ -71,35 +71,28 @@ public class NewsCycle : MonoBehaviour
         }
         else if (company.businessName == CompanyName.corrugatedGalvanisedIron)
         {
-            newsTextList.AddRange(corigatedIronNewsText);
+
         }
         else if (company.businessName == CompanyName.matches)
         {
-            newsTextList.AddRange(matchesNewsText);
-        }
-        else if (company.businessName == CompanyName.portlandCement)
-        {
-            newsTextList.AddRange(portlandCementNewsText);
+            newsTextList.AddRange(goodNewsTextPart1);
         }
         else if (company.businessName == CompanyName.electricMotor)
         {
-            newsTextList.AddRange(electricMotorNewsText);
-        }
-        else if (company.businessName == CompanyName.steamHammer)
-        {
-            newsTextList.AddRange(steamHammerNewsText);
+            newsTextList.AddRange(badNewsTextPart1);
         }
         else if (company.businessName == CompanyName.leadAcidBattery)
         {
-            newsTextList.AddRange(leadAcidBatteryNewsText);
-        }
-        else if (company.businessName == CompanyName.lawnMower)
-        {
-            newsTextList.AddRange(lawnMowerNewsText);
+            newsTextList.AddRange(goodNewsTextPart2);
         }
         else if (company.businessName == CompanyName.gasStoves)
         {
-            newsTextList.AddRange(gasStoveNewsText);
+            newsTextList.AddRange(badNewsTextPart2);
         }
+    }
+
+    public void AllowBuying()
+    {
+
     }
 }

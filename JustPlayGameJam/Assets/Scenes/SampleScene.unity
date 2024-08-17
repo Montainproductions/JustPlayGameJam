@@ -4271,17 +4271,39 @@ MonoBehaviour:
   - Companies making only the products people need.
   - People being paid fair wages and not being laid off.
   - People enjoying seeing the sun.
-  - People enjoying seeing the sun.
-  - People enjoying seeing the sun.
-  - People enjoying seeing the sun.
-  corigatedIronNewsText: []
-  matchesNewsText: []
-  portlandCementNewsText: []
-  electricMotorNewsText: []
-  steamHammerNewsText: []
-  leadAcidBatteryNewsText: []
-  lawnMowerNewsText: []
-  gasStoveNewsText: []
+  goodNewsTextPart1:
+  - Barron says they will bring new jobs to the economy.
+  - New Barron in town will revitalize the economy!
+  - More people finally have money to buy what they want.
+  - More money than ever in the economy thanks to the CEO.
+  - 
+  - 
+  badNewsTextPart1:
+  - CEO with ties to the mafia comes to town. STAY SAFE!
+  - "\u201CSo what that pollution is destroying poor peoples houses! They shouldnt
+    have been poor!\u201D - Says CEO"
+  - Hot days are getting hotter!! Cold days too!!
+  - "\u201CSo what the scientist are saying\u201D exclaims the CEO during that interview."
+  - 
+  - 
+  goodNewsTextPart2: []
+  badNewsTextPart2:
+  - "A pending lawsuit against gas companies for polluting the world. CEO says they
+    will just pay the fee. \u201CIt's cheaper than fixing the \u2018problem\u2019\u201D."
+  - 
+  - 
+  - 
+  - 
+  - 
+  boughtNewsText:
+  - "\u201CIt's getting hotter TOO fast! But that's good for you.\u201D Says NO scientist
+    looking at the current data."
+  - Ya, the CEO destroying the climate with their companies! So what, they are paying
+    for this news article!
+  - 
+  - 
+  - 
+  - 
   newsText: {fileID: 566033743}
   minTimePerStory: 12
   maxTimePerStory: 17
