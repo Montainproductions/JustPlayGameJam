@@ -4270,31 +4270,34 @@ MonoBehaviour:
   - No companies trying to ruin the world.
   - Companies making only the products people need.
   - People being paid fair wages and not being laid off.
-  - People enjoying seeing the sun.
   goodNewsTextPart1:
   - Barron says they will bring new jobs to the economy.
   - New Barron in town will revitalize the economy!
   - More people finally have money to buy what they want.
-  - More money than ever in the economy thanks to the CEO.
-  - 
-  - 
+  - More money than ever in the economy since the new CEO started to build companies
+    in the town.
+  - So much money in the economy people now have more than two houses.
+  - Average wage drasticly increases! Record low poverty numbers!
   badNewsTextPart1:
   - CEO with ties to the mafia comes to town. STAY SAFE!
   - "\u201CSo what that pollution is destroying poor peoples houses! They shouldnt
     have been poor!\u201D - Says CEO"
   - Hot days are getting hotter!! Cold days too!!
   - "\u201CSo what the scientist are saying\u201D exclaims the CEO during that interview."
-  - 
-  - 
+  - So much money in the economy that it's caused hyperinflation! The money isnt
+    worth anything anymore.
+  - All of our money due to one person. Why do we have all out eggs in one basket?
   goodNewsTextPart2: []
   badNewsTextPart2:
-  - "A pending lawsuit against gas companies for polluting the world. CEO says they
-    will just pay the fee. \u201CIt's cheaper than fixing the \u2018problem\u2019\u201D."
-  - 
-  - 
-  - 
-  - 
-  - 
+  - "Pending lawsuit against mega corperation for mass polluting the rivers and ground.
+    The CEO says they will just pay the fee. \u201CIt's cheaper than fixing the \u2018problem\u2019\u201D."
+  - "\u201CSo what that the scientist say we are at fault. I want to destroy the
+    world for more money!\u201D - Says CEO of mega corporation."
+  - All the money going to the mega corporation. Not a lot of money left for the
+    rest.
+  - Hyperinflation seems to have affected everyone except CEO.
+  - The sky is now completly gray from pollution! No more sunlight for plants!
+  - Chaos in the city! Prices have become unreasonable for everyone!
   boughtNewsText:
   - "\u201CIt's getting hotter TOO fast! But that's good for you.\u201D Says NO scientist
     looking at the current data."
