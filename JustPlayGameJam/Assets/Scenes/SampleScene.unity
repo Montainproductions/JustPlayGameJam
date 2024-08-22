@@ -4277,17 +4277,24 @@ MonoBehaviour:
   - More money than ever in the economy since the new CEO started to build companies
     in the town.
   - So much money in the economy people now have more than two houses.
-  - Average wage drasticly increases! Record low poverty numbers!
+  - Average wage increases month on month.
   badNewsTextPart1:
   - CEO with ties to the mafia comes to town. STAY SAFE!
   - "\u201CSo what that pollution is destroying poor peoples houses! They shouldnt
     have been poor!\u201D - Says CEO"
   - Hot days are getting hotter!! Cold days too!!
   - "\u201CSo what the scientist are saying\u201D exclaims the CEO during that interview."
+  - Many people finally buying their first houses
+  - All of our money due to one person. Why do we have all out eggs in one basket?
+  goodNewsTextPart2:
+  - Average wage drasticly increases! Record low poverty numbers!
   - So much money in the economy that it's caused hyperinflation! The money isnt
     worth anything anymore.
-  - All of our money due to one person. Why do we have all out eggs in one basket?
-  goodNewsTextPart2: []
+  - People starting to buy highly polluting private jets.
+  - Is there so much money now that it's worthless?
+  - So much stuff being made the excess is being thrown in the trash.
+  - Now I know how it feels to be the 1%. And I love it. Everyone should be in the
+    1%!
   badNewsTextPart2:
   - "Pending lawsuit against mega corperation for mass polluting the rivers and ground.
     The CEO says they will just pay the fee. \u201CIt's cheaper than fixing the \u2018problem\u2019\u201D."
