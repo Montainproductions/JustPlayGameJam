@@ -79,6 +79,8 @@ public class Company_Logic : MonoBehaviour
     //Updates all the values for when the player initially unlocks the company for the first time.
     public void UnlockCompanyFirst()
     {
+        NewsCycle.Instance.IncreaseNewsList(companyData);
+
         companyData.currentBuyLvl++;
         companyData.currentEfficencyLvl++;
 

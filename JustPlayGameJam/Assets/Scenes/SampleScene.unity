@@ -4305,15 +4305,6 @@ MonoBehaviour:
   - Hyperinflation seems to have affected everyone except CEO.
   - The sky is now completly gray from pollution! No more sunlight for plants!
   - Chaos in the city! Prices have become unreasonable for everyone!
-  boughtNewsText:
-  - "\u201CIt's getting hotter TOO fast! But that's good for you.\u201D Says NO scientist
-    looking at the current data."
-  - Ya, the CEO destroying the climate with their companies! So what, they are paying
-    for this news article!
-  - 
-  - 
-  - 
-  - 
   newsText: {fileID: 566033743}
   minTimePerStory: 12
   maxTimePerStory: 17

@@ -13,7 +13,7 @@ public class NewsCycle : MonoBehaviour
     private List<string> newsTextList;
 
     [SerializeField]
-    private List<string> baseNewsText, goodNewsTextPart1, badNewsTextPart1, goodNewsTextPart2, badNewsTextPart2, boughtNewsText;
+    private List<string> baseNewsText, goodNewsTextPart1, badNewsTextPart1, goodNewsTextPart2, badNewsTextPart2;
 
     [SerializeField]
     private TextMeshProUGUI newsText;
@@ -65,13 +65,9 @@ public class NewsCycle : MonoBehaviour
 
     public void IncreaseNewsList(Company company = null)
     {
-        if(company.businessName == CompanyName.none)
+        if(company == null)
         {
             newsTextList.AddRange(baseNewsText);
-        }
-        else if (company.businessName == CompanyName.corrugatedGalvanisedIron)
-        {
-
         }
         else if (company.businessName == CompanyName.matches)
         {
