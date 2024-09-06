@@ -10,6 +10,9 @@ public class NewsCycle : MonoBehaviour
     public static NewsCycle Instance { get; private set; }
 
     [SerializeField]
+    private float minTimePerStory, maxTimePerStory;
+
+    [SerializeField]
     private List<string> newsTextList;
 
     [SerializeField]
@@ -19,9 +22,6 @@ public class NewsCycle : MonoBehaviour
     private TextMeshProUGUI newsText;
 
     private int randomStory;
-
-    [SerializeField]
-    private float minTimePerStory, maxTimePerStory;
 
     private float timePerStory;
 

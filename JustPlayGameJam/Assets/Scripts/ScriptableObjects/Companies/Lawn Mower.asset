@@ -16,16 +16,16 @@ MonoBehaviour:
   businessName: 7
   unlocksEnrgySource: 0
   initUnlockCost: 100000000
-  initProduction: 20
+  initProduction: 30
   initPollution: 0.0311
-  initPrice: 3000
+  initPrice: 4000
   initBuyCost: 800000
   initEfficencyCost: 2000000
   currentBuyLvl: 0
   currentEfficencyLvl: 0
-  currentProductionValue: 487.19336
-  currentPollutionValue: -8.859625
+  currentProductionValue: 1182.705
+  currentPollutionValue: 141.22287
   reductionPollution: 0
-  currentProductionCost: 570000
-  currentEfficencyCost: 5009078
+  currentProductionCost: 24133260
+  currentEfficencyCost: 24111380
   companyScaler: 1.14

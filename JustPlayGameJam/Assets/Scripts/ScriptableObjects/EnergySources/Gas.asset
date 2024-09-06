@@ -20,8 +20,8 @@ MonoBehaviour:
   currentEffCost: 0
   currentEnrgySourceEff: 0
   currentEnrgySourceEffScaled: 0
-  startingEff: 0.56
-  maxEff: 0.38
+  startingEff: 0.4
+  maxEff: 0.15
   currentEffLvl: 0
   enrgySourcePollution: 0.29
   energySourceScaler: 1.31

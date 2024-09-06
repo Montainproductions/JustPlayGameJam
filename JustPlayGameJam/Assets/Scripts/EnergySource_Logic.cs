@@ -88,7 +88,7 @@ public class EnergySource_Logic : MonoBehaviour
         GameManager.Instance.AffectPlayersBalance(-value);
 
         energySource.currentEffLvl++;
-        energySource.currentEnrgySourceEff -= 0.02f;
+        energySource.currentEnrgySourceEff -= 0.05f;
         energySource.currentEnrgySourceEffScaled = 1 + (1 - energySource.currentEnrgySourceEff);
         energySource.currentEffCost = energySource.initEffCost * Mathf.Pow(energySource.energySourceScaler, energySource.currentEffLvl);
 

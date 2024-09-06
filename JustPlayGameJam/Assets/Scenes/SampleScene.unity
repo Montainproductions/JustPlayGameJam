@@ -4306,8 +4306,8 @@ MonoBehaviour:
   - The sky is now completly gray from pollution! No more sunlight for plants!
   - Chaos in the city! Prices have become unreasonable for everyone!
   newsText: {fileID: 566033743}
-  minTimePerStory: 12
-  maxTimePerStory: 17
+  minTimePerStory: 18
+  maxTimePerStory: 27
 --- !u!114 &1833877070 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1020380651339904230, guid: 9e494d0ae7ead0a47b246bc761ba96ff, type: 3}
