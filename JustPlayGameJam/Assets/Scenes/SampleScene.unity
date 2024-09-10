@@ -1580,8 +1580,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 55.3
-  m_fontSizeBase: 55.3
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4262,6 +4262,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bd6e93a8a16de740b0a077f8b9fe654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTimePerStory: 18
+  maxTimePerStory: 27
   newsTextList: []
   baseNewsText:
   - World not to hot, not to cold!
@@ -4306,8 +4308,6 @@ MonoBehaviour:
   - The sky is now completly gray from pollution! No more sunlight for plants!
   - Chaos in the city! Prices have become unreasonable for everyone!
   newsText: {fileID: 566033743}
-  minTimePerStory: 18
-  maxTimePerStory: 27
 --- !u!114 &1833877070 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1020380651339904230, guid: 9e494d0ae7ead0a47b246bc761ba96ff, type: 3}
