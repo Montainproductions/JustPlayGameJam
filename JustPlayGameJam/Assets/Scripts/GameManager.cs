@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
     private TextMeshProUGUI perMonthProfitText, perMonthPollutionText, balanceText, pollutionText;
 
     [SerializeField]
-    private TextMeshProUGUI[] textUICompanyButtons, textUIenergySourceButtons;
+    private TextMeshProUGUI[] textUICompanyButtons, textUIenergySourceButtons, textProdPerMonth;
 
     //Audio
     [SerializeField]
@@ -236,6 +236,15 @@ public class GameManager : MonoBehaviour
             }else if (textUIenergySourceButtons[i].IsActive())
             {
                 UpdateValues(textUIenergySourceButtons[i], energySource_Logic[arrayPos].UpgradeCostReturn());
+            }
+        }
+
+        for (int i = 0; i < textProdPerMonth.Length; i++)
+        {
+            int arrayPos = (int)Mathf.Floor(i / 3);
+            if (textProdPerMonth[i].IsActive())
+            {
+                UpdateValues(textProdPerMonth[i], company_Logic[i].ProdValReturn()); ;
             }
         }
 

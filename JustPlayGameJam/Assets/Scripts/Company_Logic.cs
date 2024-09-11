@@ -31,6 +31,8 @@ public class Company_Logic : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI[] perMonthVals;
 
+    private float perMonthProdVal;
+
     [SerializeField]
     private CustomButton[] buyButtons;
 
@@ -171,7 +173,8 @@ public class Company_Logic : MonoBehaviour
     //Updates text on how much is produced per month
     public void PerMonthValues()
     {
-        perMonthVals[0].text = GameManager.Instance.ReworkedDecimalPoint(companyData.initPrice * companyData.currentProductionValue, 0.01f, 100).ToString();
+        perMonthProdVal = GameManager.Instance.ReworkedDecimalPoint(companyData.initPrice * companyData.currentProductionValue, 0.01f, 100);
+        perMonthProdVal.ToString();
         perMonthVals[1].text = GameManager.Instance.ReworkedDecimalPoint(companyData.currentPollutionValue, 0.01f, 100).ToString();
     }
 
@@ -233,5 +236,10 @@ public class Company_Logic : MonoBehaviour
     public float EfficencyCostReturn() 
     {
         return companyData.currentEfficencyCost;
+    }
+
+    public float ProdValReturn()
+    {
+        return perMonthProdVal;
     }
 }

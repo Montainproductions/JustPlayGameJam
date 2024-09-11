@@ -77,7 +77,7 @@ public class EnergySource_Logic : MonoBehaviour
         {
             EffCalculation(energySource.currentEffCost);
         }
-        else
+        else if(energySource.currentEnrgySourceEff <= energySource.maxEff)
         {
             maxedUpgrade.SetActive(true);
         }
@@ -95,6 +95,11 @@ public class EnergySource_Logic : MonoBehaviour
         GameManager.Instance.RecalculateProduction();
 
         perMonthVals[0].text = energySource.currentEnrgySourceEffScaled.ToString();
+
+        if (energySource.currentEnrgySourceEff <= energySource.maxEff)
+        {
+            maxedUpgrade.SetActive(true);
+        }
     }
 
     //
