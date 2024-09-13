@@ -5,7 +5,7 @@ using UnityEngine;
 using TMPro;
 using System;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, IDataPersistance
 {
     public static GameManager Instance { get; private set; }
 
@@ -439,5 +439,17 @@ public class GameManager : MonoBehaviour
             return currentEnergySources.currentEnrgySourceEff;
         }
         return 1;
+    }
+
+    public void LoadData(GameData data)
+    {
+        this.playerBankBalance = data.playerBankBalance;
+        this.currentPollutionLevels = data.currentPollutionLevels;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.currentPollutionLevels = this.currentPollutionLevels;
+        data.playerBankBalance = this.playerBankBalance;
     }
 }
