@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour, IDataPersistance
 
     private void OnDestroy()
     {
-        RestartCompanies();
+        //RestartCompanies();
     }
 
     #region AffectingMoneyValues
@@ -151,6 +151,14 @@ public class GameManager : MonoBehaviour, IDataPersistance
     {
         unlockedCompanies.Add(newCompany);
         companyUnlocked = true;
+    }
+
+    public void UnlockLoadedCompaniesArray(Company[] alreadyUnlockedCompanies)
+    {
+        for (int i = 0; i < alreadyUnlockedCompanies.Length; i++)
+        {
+            CompanyUnlocked(alreadyUnlockedCompanies[i]);
+        }
     }
 
     //Unlocks new energy source
@@ -445,6 +453,8 @@ public class GameManager : MonoBehaviour, IDataPersistance
     {
         this.playerBankBalance = data.playerBankBalance;
         this.currentPollutionLevels = data.currentPollutionLevels;
+
+        UnlockLoadedCompaniesArray(data.unlockedCompanies);
     }
 
     public void SaveData(ref GameData data)
