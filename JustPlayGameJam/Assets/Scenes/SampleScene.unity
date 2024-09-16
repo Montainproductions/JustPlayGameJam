@@ -433,6 +433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a6f98dbf4a5f145b7113f2a6dc569b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fileName: GameDataFile.json
 --- !u!4 &127745244
 Transform:
   m_ObjectHideFlags: 0
@@ -4065,7 +4066,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tickTimer: 1.9
-  playerBankBalance: 100000000
+  playerBankBalance: 100
   currentPollutionLevels: 0
   correctAmount:
   - {r: 0.14711636, g: 0.8962264, b: 0.36249346, a: 0}

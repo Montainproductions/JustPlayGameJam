@@ -153,14 +153,6 @@ public class GameManager : MonoBehaviour, IDataPersistance
         companyUnlocked = true;
     }
 
-    public void UnlockLoadedCompaniesArray(Company[] alreadyUnlockedCompanies)
-    {
-        for (int i = 0; i < alreadyUnlockedCompanies.Length; i++)
-        {
-            CompanyUnlocked(alreadyUnlockedCompanies[i]);
-        }
-    }
-
     //Unlocks new energy source
     public void EnergySourceUnlocked(EnergySource newEnergySource)
     {
@@ -451,15 +443,26 @@ public class GameManager : MonoBehaviour, IDataPersistance
 
     public void LoadData(GameData data)
     {
-        this.playerBankBalance = data.playerBankBalance;
-        this.currentPollutionLevels = data.currentPollutionLevels;
+        Debug.Log(data.ReturnPlayerBalance());
+        this.playerBankBalance = data.ReturnPlayerBalance();
+        this.currentPollutionLevels = data.ReturnPollution();
 
-        UnlockLoadedCompaniesArray(data.unlockedCompanies);
+        if (data.unlockedCompanies == null) return;
+
+        for (int i = 0; i < data.unlockedCompanies.Count; i++)
+        {
+            CompanyUnlocked(data.unlockedCompanies[i]);
+        }
     }
 
     public void SaveData(ref GameData data)
     {
-        data.currentPollutionLevels = this.currentPollutionLevels;
-        data.playerBankBalance = this.playerBankBalance;
+        data.SetPollution(this.currentPollutionLevels);
+        data.SetPlayerBalance(this.playerBankBalance);
+
+        for (int i = 0; i < this.unlockedCompanies.Count; i++)
+        {
+            data.unlockedCompanies.Add(this.unlockedCompanies[i]);
+        }
     }
 }

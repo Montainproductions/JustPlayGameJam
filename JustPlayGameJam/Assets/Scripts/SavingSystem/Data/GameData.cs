@@ -5,15 +5,34 @@ using UnityEngine;
 [System.Serializable]
 public class GameData
 {
-    public float playerBankBalance, currentPollutionLevels;
+    private float playerBankBalance, currentPollutionLevels;
 
-    public Company[] unlockedCompanies;
+    //List of all the unlocked companies
+    public List<Company> unlockedCompanies = new List<Company>();
 
     public GameData() 
     {
-        this.playerBankBalance = 0;
+        this.playerBankBalance = 100;
         this.currentPollutionLevels = 0;
+    }
 
-        this.unlockedCompanies = null;
+    public void SetPlayerBalance(float balance)
+    {
+        playerBankBalance = balance;
+    }
+
+    public float ReturnPlayerBalance()
+    {
+        return playerBankBalance;
+    }
+
+    public void SetPollution(float pollution)
+    {
+        currentPollutionLevels = pollution;
+    }
+
+    public float ReturnPollution()
+    {
+        return currentPollutionLevels;
     }
 }
