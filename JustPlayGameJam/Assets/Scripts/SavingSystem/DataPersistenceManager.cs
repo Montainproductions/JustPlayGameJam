@@ -8,6 +8,9 @@ public class DataPersistenceManager : MonoBehaviour
     [Header("File Storage Config")]
     [SerializeField] private string fileName;
 
+    [SerializeField]
+    private bool newGameBool;
+
     private GameData gameData;
     private List<IDataPersistance> dataPersistancesObjects;
     private FileDataHandler dataHandler;
@@ -37,7 +40,7 @@ public class DataPersistenceManager : MonoBehaviour
     {
         this.gameData = dataHandler.Load();
 
-        if(this.gameData == null)
+        if(this.gameData == null || newGameBool)
         {
             NewGame();
         }

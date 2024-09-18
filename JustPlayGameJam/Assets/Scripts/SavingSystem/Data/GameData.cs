@@ -5,20 +5,20 @@ using UnityEngine;
 [System.Serializable]
 public class GameData
 {
-    private float playerBankBalance, currentPollutionLevels;
+    private float perMonthProfit, playerBankBalance, perMonthPollution, currentPollutionLevels;
 
-    //List of all the unlocked companies
-    public List<Company> unlockedCompanies = new List<Company>();
 
     public GameData() 
     {
         this.playerBankBalance = 100;
         this.currentPollutionLevels = 0;
+        this.perMonthProfit = 0;
+        this.perMonthPollution = 0;
     }
 
     public void SetPlayerBalance(float balance)
     {
-        playerBankBalance = balance;
+        this.playerBankBalance = balance;
     }
 
     public float ReturnPlayerBalance()
@@ -26,13 +26,33 @@ public class GameData
         return playerBankBalance;
     }
 
+    public void SetProfitRate(float perMonthProfit)
+    {
+        this.perMonthProfit = perMonthProfit;
+    }
+
+    public float ReturnProfitRate()
+    {
+        return perMonthProfit;
+    }
+
     public void SetPollution(float pollution)
     {
-        currentPollutionLevels = pollution;
+        this.currentPollutionLevels = pollution;
     }
 
     public float ReturnPollution()
     {
         return currentPollutionLevels;
+    }
+
+    public void SetPollutionRate(float perMonthPollution)
+    {
+        this.perMonthPollution = perMonthPollution;
+    }
+
+    public float ReturnPollutionRate()
+    {
+        return perMonthPollution;
     }
 }
