@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour, IDataPersistance
 
     private void OnDestroy()
     {
-        //RestartCompanies();
+        RestartCompanies();
     }
 
     #region AffectingMoneyValues
@@ -145,7 +145,7 @@ public class GameManager : MonoBehaviour, IDataPersistance
     }
 #endregion
 
-    #region CompanyInfo
+#region CompanyInfo
     //Player buys a new company and is added to the current list
     public void CompanyUnlocked(Company newCompany)
     {
@@ -178,6 +178,7 @@ public class GameManager : MonoBehaviour, IDataPersistance
                 unlockedCompanies[i].currentEfficencyLvl = 0;
             }
         }
+    
         if (energySourcesUnlocked)
         {
             for (int i = 0; i < unlockedEnergySources.Count; i++)
@@ -188,9 +189,9 @@ public class GameManager : MonoBehaviour, IDataPersistance
             }
         }
     }
-    #endregion CompanyInfo
+#endregion CompanyInfo
 
-    #region UpdatingTextUI
+#region UpdatingTextUI
     IEnumerator UIUpdateTimer()
     {
         UpdateValues(balanceText, playerBankBalance);
@@ -374,7 +375,7 @@ public class GameManager : MonoBehaviour, IDataPersistance
             energySource_Logic[i].ButtonColor();
         }
     }
-    #endregion UpdatingTextUI
+#endregion UpdatingTextUI
 
 
     public bool ChecksPurcheseAbility(float costOfItem)
@@ -443,7 +444,7 @@ public class GameManager : MonoBehaviour, IDataPersistance
 
     public void LoadData(GameData data)
     {
-        Debug.Log(data.ReturnPlayerBalance());
+        //Debug.Log(data.ReturnPlayerBalance());
         //Debug.Log(MonthlyPollution());
         //Debug.Log(data.ReturnPollutionRate());
         //Debug.Log(MonthlyProfit());
@@ -469,22 +470,16 @@ public class GameManager : MonoBehaviour, IDataPersistance
 
     public void SaveData(ref GameData data)
     {
+        Debug.Log("GameSaved");
+
         data.SetPollution(this.currentPollutionLevels);
         data.SetPlayerBalance(this.playerBankBalance);
         data.SetProfitRate(MonthlyProfit());
         data.SetPollutionRate(MonthlyPollution());
 
-        Debug.Log("GameSaved");
-
-        Debug.Log(data.ReturnPlayerBalance());
-        Debug.Log(data.ReturnPollution());
-        Debug.Log(data.ReturnPollutionRate());
-        //Debug.Log(MonthlyProfit());
-        Debug.Log(data.ReturnProfitRate());
-
-        /*for (int i = 0; i < this.unlockedCompanies.Count; i++)
+        for (int i = 0; i < this.unlockedCompanies.Count; i++)
         {
             data.unlockedCompanies.Add(this.unlockedCompanies[i]);
-        }*/
+        }
     }
 }

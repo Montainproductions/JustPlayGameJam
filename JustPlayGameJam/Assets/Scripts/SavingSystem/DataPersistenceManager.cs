@@ -26,6 +26,7 @@ public class DataPersistenceManager : MonoBehaviour
 
     public void Start()
     {
+        GameManager.Instance.RestartCompanies();
         this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
         this.dataPersistancesObjects = FindAllDataPersistanceObjects();
         LoadGame();
@@ -59,6 +60,8 @@ public class DataPersistenceManager : MonoBehaviour
         }
 
         dataHandler.Save(gameData);
+
+        GameManager.Instance.RestartCompanies();
     }
 
     private List<IDataPersistance> FindAllDataPersistanceObjects()

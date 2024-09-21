@@ -54,11 +54,11 @@ public class FileDataHandler
             Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
 
             string dataToStore = JsonUtility.ToJson(data, true);
-
             using (FileStream stream = new FileStream(fullPath, FileMode.Create))
             {
                 using (StreamWriter writer = new StreamWriter(stream))
                 {
+                    Debug.Log(dataToStore);
                     writer.Write(dataToStore);
                 }
             }

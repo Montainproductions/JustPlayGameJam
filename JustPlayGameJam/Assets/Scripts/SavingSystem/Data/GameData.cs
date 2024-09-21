@@ -5,8 +5,9 @@ using UnityEngine;
 [System.Serializable]
 public class GameData
 {
-    private float perMonthProfit, playerBankBalance, perMonthPollution, currentPollutionLevels;
+    public float perMonthProfit, playerBankBalance, perMonthPollution, currentPollutionLevels;
 
+    public List<Company> unlockedCompanies = new List<Company>();
 
     public GameData() 
     {
@@ -14,6 +15,8 @@ public class GameData
         this.currentPollutionLevels = 0;
         this.perMonthProfit = 0;
         this.perMonthPollution = 0;
+
+        //unlockedCompanies.Clear();
     }
 
     public void SetPlayerBalance(float balance)
