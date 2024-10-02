@@ -59,4 +59,14 @@ public class Company : ScriptableObject
 
     [Header("Arbitrary company value")]
     public float companyScaler;
+
+    [Header("Id")]
+    [SerializeField]
+    public string id;
+
+    [ContextMenu("Generate id GUID")]
+    private void GenerateGuid()
+    {
+        id = System.Guid.NewGuid().ToString();
+    }
 }

@@ -45,6 +45,7 @@ public class Company_Logic : MonoBehaviour
         unlocked.SetActive(false);
     }
 
+    #region Unlocking
     //Player unlocks/buys a company.
     public void UnlockCompany()
     {
@@ -93,6 +94,14 @@ public class Company_Logic : MonoBehaviour
         EfficencyButtonCost();
     }
 
+    public void LoadedCompaniesUnlocked()
+    {
+        locked.SetActive(false);
+        unlocked.SetActive(true);
+    }
+    #endregion
+
+    #region Leveling Up
     public void IncreaseProductionLvl()
     {
         //Checks if the player has enough money to buy the upgrade
@@ -129,7 +138,9 @@ public class Company_Logic : MonoBehaviour
             CurrentProductionCalculation();
         }
     }
+    #endregion
 
+    #region Calculations
     //Calculated the amount produced per month of the item.
     public void CurrentProductionCalculation()
     {
@@ -177,6 +188,7 @@ public class Company_Logic : MonoBehaviour
         perMonthProdVal.ToString();
         perMonthVals[1].text = GameManager.Instance.ReworkedDecimalPoint(companyData.currentPollutionValue, 0.01f, 100).ToString();
     }
+    #endregion
 
     public void ButtonColor()
     {
@@ -202,8 +214,8 @@ public class Company_Logic : MonoBehaviour
             /*Debug.Log(" ");
             Debug.Log("Which Button: " + button);
             Debug.Log("Absolitly Available");
-            Debug.Log(" ");*/
-            //buyButtons[button].UpdateColors(correctAmount[0], correctAmount[1], correctAmount[2]);
+            Debug.Log(" ");
+            buyButtons[button].UpdateColors(correctAmount[0], correctAmount[1], correctAmount[2]);*/
             buyButtons[button].UpdateColors(incorrectAmount[0], incorrectAmount[1], incorrectAmount[2]);
         }
         else
@@ -223,6 +235,9 @@ public class Company_Logic : MonoBehaviour
         this.incorrectAmount = incorrectAmount;
     }
 
+
+
+    #region Return Values
     public float UnlockCostReturn()
     {
         return companyData.initUnlockCost;
@@ -242,4 +257,10 @@ public class Company_Logic : MonoBehaviour
     {
         return perMonthProdVal;
     }
+
+    public string IDStringReturn()
+    {
+        return companyData.id;
+    }
+    #endregion
 }

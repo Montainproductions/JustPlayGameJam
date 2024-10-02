@@ -444,33 +444,28 @@ public class GameManager : MonoBehaviour, IDataPersistance
 
     public void LoadData(GameData data)
     {
-        //Debug.Log(data.ReturnPlayerBalance());
-        //Debug.Log(MonthlyPollution());
-        //Debug.Log(data.ReturnPollutionRate());
-        //Debug.Log(MonthlyProfit());
-        // Debug.Log(data.ReturnProfitRate());
-
-        for (int i = 0; i < unlockedCompanies.Count; i++)
-        {
-            Debug.Log(unlockedCompanies[i]);
-        }
-
         this.playerBankBalance = data.ReturnPlayerBalance();
         this.currentPollutionLevels = data.ReturnPollution();
 
         //StartCoroutine(UIUpdateTimer());
 
-        /*if (data.unlockedCompanies == null) return;
+        if (data.unlockedCompanies == null) return;
 
+        //Debug.Log(data.ReturnUnlockedCompanies());
+        
         for (int i = 0; i < data.unlockedCompanies.Count; i++)
         {
-            CompanyUnlocked(data.unlockedCompanies[i]);
-        }*/
+            //data.unlockedCompanies.TryGetValue(id, out );
+            if (company_Logic[i].IDStringReturn() == data.unlockedCompanies[i])
+            {
+
+            }
+        }
     }
 
     public void SaveData(ref GameData data)
     {
-        Debug.Log("GameSaved");
+        //Debug.Log("GameSaved");
 
         data.SetPollution(this.currentPollutionLevels);
         data.SetPlayerBalance(this.playerBankBalance);
@@ -479,7 +474,8 @@ public class GameManager : MonoBehaviour, IDataPersistance
 
         for (int i = 0; i < this.unlockedCompanies.Count; i++)
         {
-            data.unlockedCompanies.Add(this.unlockedCompanies[i]);
+            //Debug.Log(unlockedCompanies[i]);
+
         }
     }
 }

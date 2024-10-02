@@ -434,7 +434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fileName: GameDataFile.json
-  newGameBool: 1
+  newGameBool: 0
 --- !u!4 &127745244
 Transform:
   m_ObjectHideFlags: 0
