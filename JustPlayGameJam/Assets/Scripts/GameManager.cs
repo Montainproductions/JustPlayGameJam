@@ -456,10 +456,10 @@ public class GameManager : MonoBehaviour, IDataPersistance
         for (int i = 0; i < data.unlockedCompanies.Count; i++)
         {
             //data.unlockedCompanies.TryGetValue(id, out );
-            if (company_Logic[i].IDStringReturn() == data.unlockedCompanies[i])
+            /*if (company_Logic[i].IDStringReturn() == data.unlockedCompanies[i])
             {
 
-            }
+            }*/
         }
     }
 

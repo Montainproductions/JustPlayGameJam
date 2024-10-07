@@ -7,7 +7,7 @@ public class GameData
 {
     public float perMonthProfit, playerBankBalance, perMonthPollution, currentPollutionLevels;
 
-    public Dictionary<string, bool> unlockedCompanies;
+    public Dictionary<string, Company> unlockedCompanies;
 
     public GameData() 
     {
@@ -16,7 +16,7 @@ public class GameData
         this.perMonthProfit = 0;
         this.perMonthPollution = 0;
 
-        unlockedCompanies = new Dictionary<string, bool>();
+        unlockedCompanies = new Dictionary<string, Company>();
     }
 
     public void SetPlayerBalance(float balance)
