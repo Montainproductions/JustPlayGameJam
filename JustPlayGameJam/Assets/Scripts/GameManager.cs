@@ -455,11 +455,13 @@ public class GameManager : MonoBehaviour, IDataPersistance
         
         for (int i = 0; i < data.unlockedCompanies.Count; i++)
         {
-            //data.unlockedCompanies.TryGetValue(id, out );
-            /*if (company_Logic[i].IDStringReturn() == data.unlockedCompanies[i])
-            {
+            Company companyLoaded;
+            data.unlockedCompanies.TryGetValue(company_Logic[i].IDStringReturn(), out companyLoaded);
 
-            }*/
+            if (companyLoaded.unlocked)
+            {
+                this.unlockedCompanies.Add(companyLoaded);
+            }
         }
     }
 
@@ -472,10 +474,16 @@ public class GameManager : MonoBehaviour, IDataPersistance
         data.SetProfitRate(MonthlyProfit());
         data.SetPollutionRate(MonthlyPollution());
 
+
         for (int i = 0; i < this.unlockedCompanies.Count; i++)
         {
-            //Debug.Log(unlockedCompanies[i]);
+            if (data.unlockedCompanies.ContainsKey(company_Logic[i].IDStringReturn()))
+            {
+                data.unlockedCompanies.Remove(company_Logic[i].IDStringReturn());
+            }
 
+            //Debug.Log(unlockedCompanies[i]);
+            data.unlockedCompanies.Add(company_Logic[i].IDStringReturn(), this.unlockedCompanies[i]);
         }
     }
 }
