@@ -194,26 +194,21 @@ public class GameManager : MonoBehaviour, IDataPersistance
 #region UpdatingTextUI
     IEnumerator UIUpdateTimer()
     {
+        //Update global values
         UpdateValues(balanceText, playerBankBalance);
         UpdateValues(perMonthProfitText, MonthlyProfit());
         UpdateValues(pollutionText, currentPollutionLevels);
         UpdateValues(perMonthPollutionText, MonthlyPollution());
+        
+        //Loop and update text values for each company
         for (int i = 0; i < textUICompanyButtons.Length; i++)
         {
             float remainder = Remainder(i,3);
             int arrayPos = (int)Mathf.Floor(i/3);
-            //Debug.Log("Current text to update: " + i);
-            //Debug.Log("Remainder: " + remainder + " Text Array Pos: " + i + " Company Array Pos: " + arrayPos);
-
-            //Debug.Log(" ");
 
             if (textUICompanyButtons[i].IsActive() && remainder <= 0.3f) 
             {
-                //Debug.Log("Current text to update: " + i);
-                //Debug.Log("Remainder: " + remainder);
-                //Debug.Log(i);
                 UpdateValues(textUICompanyButtons[i], company_Logic[arrayPos].UnlockCostReturn());
-                //Debug.Log(company_Logic[arrayPosition].UnlockCostReturn());
             }
             else if(textUICompanyButtons[i].IsActive() && remainder >= 0.4f)
             {
@@ -267,9 +262,6 @@ public class GameManager : MonoBehaviour, IDataPersistance
         } else if (1000000 <= cost)
         {
             moneylength = Mathf.Floor(Mathf.Log10(cost));
-            //Debug.Log("Length of log: " + moneylength + " ");
-
-            //Debug.Log("Entire Value In Text: " + fullTextMoney);
 
             CorrectValueSize(cost);
 
@@ -279,19 +271,13 @@ public class GameManager : MonoBehaviour, IDataPersistance
         }
 
         displayedMoney = " ";
-
-        //perMonthText.text = ReworkedDecimalPoint(MonthlyProfit(), 0.01f, 100).ToString();
-        //balanceText.text = TwoDecimalPoint(playerBankBalance).ToString();
-        //pollutionText.text = ReworkedDecimalPoint(currentPollutionLevels, 0.01f, 100).ToString();
     }
 
     public void CorrectValueSize(float cost)
     {
-        //Debug.Log(moneylength/3);
         moneylength = moneylength / 3;
         float remainder = moneylength;
         remainder = remainder - Mathf.Floor(moneylength);
-        //Debug.Log("Remainder: " + remainder);
 
         if (remainder <= 0)
         {
@@ -315,12 +301,6 @@ public class GameManager : MonoBehaviour, IDataPersistance
             displayedMoney += fullTextMoney[i];
         }
         reducedValue = Int32.Parse(displayedMoney);
-        //Debug.Log("String: " + displayedMoney);
-        //Debug.Log("Float: " + reducedBalance);
-
-        //reducedBalance = ReworkedDecimalPoint(reducedBalance, 0.001f);
-
-        //Debug.Log("Updated Reduced Bal: " + reducedBalance);
     }
 
     public string CorrectPrefex()
